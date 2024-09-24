@@ -100,7 +100,7 @@ function Manga() {
                   <Button
                     key={index}
                     onClick={() => {
-                      navigate(`chap-${genre.id}`);
+                      navigate(`/genres/${genre.id}`);
                     }}
                     sx={{
                       marginRight: 1,

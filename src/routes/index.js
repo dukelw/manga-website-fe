@@ -17,6 +17,7 @@ import Chapter from "../pages/Chapter";
 import Manga from "../pages/Manga";
 import Popular from "../pages/Popular";
 import Genres from "../pages/Genres";
+import SpecificGenre from "../pages/SpecificGenre";
 import New from "../pages/New";
 
 const publicRoutes = [
@@ -29,6 +30,7 @@ const publicRoutes = [
   { path: config.routes.chapter, component: Chapter },
   { path: config.routes.manga, component: Manga },
   { path: config.routes.popular, component: Popular },
+  { path: config.routes.specificGenre, component: SpecificGenre },
   { path: config.routes.genres, component: Genres },
   { path: config.routes.new, component: New },
 ];

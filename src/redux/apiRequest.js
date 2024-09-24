@@ -140,7 +140,8 @@ export const getAllGenres = async (dispatch) => {
   }
 };
 
-export const getAllMangasByGenre = async (
+export const getAllMangasBySpecficGenre = async (
+  genreID,
   page,
   status = "",
   dispatch
@@ -148,13 +149,29 @@ export const getAllMangasByGenre = async (
   dispatch(getMangaByGenreStart());
   try {
     const res = await axios.get(
-      `/genres/all?page=${page}&status=${status}`,
+      `/genres/${genreID}?page=${page}&status=${status}`,
       {
         headers: {
           "Content-Type": "application/json",
         },
       }
     );
+    dispatch(getMangaByGenreSuccess(res.data));
+    return res.data;
+  } catch (error) {
+    console.error("Error fetching manga by genre:", error);
+    dispatch(getMangaByGenreFailure());
+  }
+};
+
+export const getAllMangasByGenre = async (page, status = "", dispatch) => {
+  dispatch(getMangaByGenreStart());
+  try {
+    const res = await axios.get(`/genres/all?page=${page}&status=${status}`, {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
     dispatch(getMangaByGenreSuccess(res.data));
     return res.data;
   } catch (error) {

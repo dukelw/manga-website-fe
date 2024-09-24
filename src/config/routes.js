@@ -7,6 +7,7 @@ const routes = {
   signup: "/signup",
   popular: "/popular",
   new: "/new",
+  specificGenre: "/genres/:genreID",
   genres: "/genres",
   signin: "/signin",
   managementSlider: "/management/collection",
