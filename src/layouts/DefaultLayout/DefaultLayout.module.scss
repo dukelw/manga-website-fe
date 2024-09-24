@@ -1,6 +1,7 @@
 :root {
   --default-layout-header-height: 68.5px;
   --default-layout-width: 1400px;
+  --default-header-width: 1280px;
 }
 .wrapper {
   display: flex;
@@ -9,7 +10,7 @@
 }
 
 .container {
-  margin-top: var(--default-layout-header-height);
+  background-color: var(--black);
   min-width: var(--default-layout-width);
   min-height: 100vh;
   padding: 0 20px;
@@ -23,5 +24,6 @@
 }
 
 .content {
+  color: var(--yellow);
   flex: 1;
 }

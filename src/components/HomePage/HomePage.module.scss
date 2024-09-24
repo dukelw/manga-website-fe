@@ -1,10 +1,8 @@
-.status {
-  text-align: center;
-  border: none;
-  font-weight: 600;
-  padding: 4px;
+.card-image {
+  height: 200px;
+  object-fit: cover;
 }
 
-h1 {
-  text-align: center;
+.card-description {
+  background-color: transparent;
 }

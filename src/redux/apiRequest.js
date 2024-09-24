@@ -88,8 +88,188 @@ import {
   updateNotificationStart,
   updateNotificationSuccess,
 } from "./notificationSlice";
+import {
+  getAllGenresFailure,
+  getAllGenresStart,
+  getAllGenresSuccess,
+  getAllMangasFailure,
+  getAllMangasStart,
+  getAllMangasSuccess,
+  getAllNewMangasFailure,
+  getAllNewMangasStart,
+  getAllNewMangasSuccess,
+  getAllRecentlyMangasFailure,
+  getAllRecentlyMangasStart,
+  getAllRecentlyMangasSuccess,
+  getAllTrendingMangasFailure,
+  getAllTrendingMangasStart,
+  getAllTrendingMangasSuccess,
+  getMangaFailure,
+  getMangaStart,
+  getMangaSuccess,
+} from "./mangaSlice";
+import {
+  getChapterFailure,
+  getChapterStart,
+  getChapterSuccess,
+} from "./chapterSlice";
+import {
+  getMangaByGenreFailure,
+  getMangaByGenreStart,
+  getMangaByGenreSuccess,
+} from "./genreSlice";
 
 const REACT_APP_BASE_URL = process.env.REACT_APP_BASE_URL;
+const REACT_APP_MANGA_URL = process.env.REACT_APP_MANGA_URL;
+
+// Start genre
+
+export const getAllGenres = async (dispatch) => {
+  dispatch(getAllGenresStart());
+  try {
+    const res = await axios.get(`/genres`, {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    dispatch(getAllGenresSuccess(res.data));
+    return res.data;
+  } catch (error) {
+    console.error("Error fetching genres:", error);
+    dispatch(getAllGenresFailure());
+  }
+};
+
+export const getAllMangasByGenre = async (
+  page,
+  status = "",
+  dispatch
+) => {
+  dispatch(getMangaByGenreStart());
+  try {
+    const res = await axios.get(
+      `/genres/all?page=${page}&status=${status}`,
+      {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+    dispatch(getMangaByGenreSuccess(res.data));
+    return res.data;
+  } catch (error) {
+    console.error("Error fetching manga by genre:", error);
+    dispatch(getMangaByGenreFailure());
+  }
+};
+
+// End genre
+
+// Start manga
+
+export const getManga = async (ID, dispatch) => {
+  dispatch(getMangaStart());
+  try {
+    const res = await axios.get(`/comics/${ID}`, {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    dispatch(getMangaSuccess(res.data));
+    return res.data;
+  } catch (error) {
+    console.error("Error fetching answer:", error);
+    dispatch(getMangaFailure());
+  }
+};
+
+export const getAllMangas = async (type = "", page, status, dispatch) => {
+  dispatch(getAllMangasStart());
+  try {
+    const res = await axios.get(`/top${type}?page=${page}&status=${status}`, {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    dispatch(getAllMangasSuccess(res.data));
+    return res.data;
+  } catch (error) {
+    console.error("Error fetching answer:", error);
+    dispatch(getAllMangasFailure());
+  }
+};
+
+export const getAllTrendingMangas = async (page, status = "", dispatch) => {
+  dispatch(getAllTrendingMangasStart());
+  try {
+    const res = await axios.get(`trending-comics?page=${page}`, {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    dispatch(getAllTrendingMangasSuccess(res.data));
+    return res.data;
+  } catch (error) {
+    console.error("Error fetching answer:", error);
+    dispatch(getAllTrendingMangasFailure());
+  }
+};
+
+export const getAllNewMangas = async (page, status = "", dispatch) => {
+  dispatch(getAllNewMangasStart());
+  try {
+    const res = await axios.get(`/new-comics?page=${page}&status=${status}`, {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    dispatch(getAllNewMangasSuccess(res.data));
+    return res.data;
+  } catch (error) {
+    console.error("Error fetching answer:", error);
+    dispatch(getAllNewMangasFailure());
+  }
+};
+
+export const getAllRecentlyMangas = async (page, status = "", dispatch) => {
+  dispatch(getAllRecentlyMangasStart());
+  try {
+    const res = await axios.get(
+      `/recent-update-comics?page=${page}&status=${status}`,
+      {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+    dispatch(getAllRecentlyMangasSuccess(res.data));
+    return res.data;
+  } catch (error) {
+    console.error("Error fetching answer:", error);
+    dispatch(getAllRecentlyMangasFailure());
+  }
+};
+
+// End manga
+
+// Start chapter
+
+export const getChapter = async (comicID, chapterID, dispatch) => {
+  dispatch(getChapterStart());
+  try {
+    const res = await axios.get(`/comics/${comicID}/chapters/${chapterID}`, {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    dispatch(getChapterSuccess(res.data));
+    return res.data;
+  } catch (error) {
+    dispatch(getChapterFailure());
+  }
+};
+
+// End chapter
 
 // Start user
 export const signin = async (user, dispatch, navigate) => {
@@ -102,6 +282,24 @@ export const signin = async (user, dispatch, navigate) => {
     navigate("/");
   } catch (error) {
     dispatch(userSigninFailure());
+    return false;
+  }
+};
+
+export const signupAnotherWay = async (user, dispatch, navigate) => {
+  dispatch(userSignupStart());
+  try {
+    const res = await axios.post(
+      `${REACT_APP_BASE_URL}user/other-signup`,
+      user
+    );
+    const refreshToken = res.data?.metadata?.metadata?.tokens?.refreshToken;
+    localStorage.setItem("refreshToken", refreshToken);
+    dispatch(userSignupSuccess());
+    dispatch(userSigninSuccess(res.data));
+    navigate("/welcome");
+  } catch (error) {
+    dispatch(userSignupFailure());
     return false;
   }
 };

@@ -1,5 +1,8 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import userReducer from "./userSlice";
+import mangaReducer from "./mangaSlice";
+import genreReducer from "./genreSlice";
+import chapterReducer from "./chapterSlice";
 import uploadReducer from "./uploadSlice";
 import sliderReducer from "./sliderSlice";
 import commentReducer from "./commentSlice";
@@ -24,6 +27,9 @@ const persistConfig = {
 };
 
 const rootReducer = combineReducers({
+  manga: mangaReducer,
+  genre: genreReducer,
+  chapter: chapterReducer,
   user: userReducer,
   upload: uploadReducer,
   slider: sliderReducer,

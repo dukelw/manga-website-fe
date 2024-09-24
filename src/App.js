@@ -10,7 +10,7 @@ const theme = createTheme();
 
 function App() {
   const currentUser = useSelector((state) => state.user.signin.currentUser);
-  const isAdmin = currentUser?.metadata.user.isAdmin;
+  const isAdmin = currentUser?.metadata.user?.isAdmin;
 
   return (
     <ThemeProvider theme={theme}>

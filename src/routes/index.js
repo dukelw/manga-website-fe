@@ -13,6 +13,11 @@ import Sliders from "../pages/Sliders";
 import Users from "../pages/Users";
 import UpdateSlider from "../pages/UpdateSlider";
 import NotFound from "../pages/NotFound";
+import Chapter from "../pages/Chapter";
+import Manga from "../pages/Manga";
+import Popular from "../pages/Popular";
+import Genres from "../pages/Genres";
+import New from "../pages/New";
 
 const publicRoutes = [
   { path: config.routes.signin, component: Signin, layout: null },
@@ -21,6 +26,11 @@ const publicRoutes = [
   { path: config.routes.history, component: History },
   { path: config.routes.document, component: Document },
   { path: config.routes.notFound, component: NotFound },
+  { path: config.routes.chapter, component: Chapter },
+  { path: config.routes.manga, component: Manga },
+  { path: config.routes.popular, component: Popular },
+  { path: config.routes.genres, component: Genres },
+  { path: config.routes.new, component: New },
 ];
 
 const privateRoutes = [
