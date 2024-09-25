@@ -10,6 +10,7 @@ import {
   CircularProgress,
   Pagination,
   Button,
+  Skeleton,
 } from "@mui/material";
 import { MenuBook, Visibility } from "@mui/icons-material"; // Import icons
 import styles from "./MangaSectionAdvance.module.scss";
@@ -72,7 +73,28 @@ const MangaSectionAdvance = ({ sectionName, fetchMangaFunction }) => {
         alignItems="center"
         height="100vh"
       >
-        <CircularProgress />
+        <Grid container spacing={2}>
+          {/* Skeleton for Manga Card Thumbnails */}
+          {Array.from(new Array(8)).map((_, index) => (
+            <Grid item xs={12} sm={6} md={3} lg={1.5} key={index}>
+              <Skeleton
+                variant="rectangular"
+                width="100%"
+                height={250}
+                sx={{ backgroundColor: "var(--green)" }}
+              />
+              <Skeleton
+                variant="text"
+                sx={{ backgroundColor: "var(--green)", mt: 1 }}
+              />
+              <Skeleton
+                variant="text"
+                width="60%"
+                sx={{ backgroundColor: "var(--green)" }}
+              />
+            </Grid>
+          ))}
+        </Grid>
       </Box>
     );
   }

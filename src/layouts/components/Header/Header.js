@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   AppBar,
   Toolbar,
@@ -8,12 +8,14 @@ import {
   Menu,
   MenuItem,
   Avatar,
-  InputBase,
 } from "@mui/material";
-import { Search, Notifications } from "@mui/icons-material";
+import { Notifications } from "@mui/icons-material";
 import { Link, useLocation } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import Search from "../Search";
 
 function Header() {
+  const dispatch = useDispatch();
   const [anchorEl, setAnchorEl] = useState(null);
   const isMenuOpen = Boolean(anchorEl);
   const location = useLocation();
@@ -53,29 +55,18 @@ function Header() {
             component="div"
             sx={{ mr: 2, fontFamily: "var(--font-family)" }}
           >
-            <Link to="/" style={linkStyle("/")}>
+            <Link
+              to="/"
+              style={{
+                color: "var(--yellow)",
+                textDecoration: "none",
+                fontWeight: "bold",
+              }}
+            >
               LEWIS MANGA
             </Link>
           </Typography>
-          <Box
-            sx={{
-              display: "flex",
-              alignItems: "center",
-              backgroundColor: "var(--dark)",
-              borderRadius: 2,
-              pl: 1,
-              pr: 1,
-              ml: 6,
-              minWidth: "300px",
-            }}
-          >
-            <Search sx={{ color: "#fff" }} />
-            <InputBase
-              placeholder="Search manga"
-              inputProps={{ "aria-label": "search" }}
-              sx={{ ml: 1, flex: 1, color: "#fff" }}
-            />
-          </Box>
+          <Search />
         </Box>
 
         {/* Navigation links */}

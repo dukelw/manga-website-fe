@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import {
   Container,
   Grid,
@@ -9,20 +9,113 @@ import {
   CardMedia,
   Button,
   IconButton,
+  Skeleton,
 } from "@mui/material";
 import SaveIcon from "@mui/icons-material/Save";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import ThumbUpIcon from "@mui/icons-material/ThumbUp";
 import PeopleIcon from "@mui/icons-material/People";
 import FavoriteIcon from "@mui/icons-material/Favorite";
+import { getManga } from "../../redux/apiRequest";
 
 function Manga() {
+  const { slug } = useParams();
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [isExpanded, setIsExpanded] = useState(false);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      setLoading(true);
+      await getManga(slug, dispatch);
+      setLoading(false);
+    };
+    fetchData();
+  }, [slug]);
 
   const currentManga = useSelector((state) => state?.manga.get.manga);
   console.log(currentManga);
+
+  if (loading) {
+    return (
+      <Container>
+        <Grid container spacing={4} sx={{ marginTop: 4 }}>
+          {/* Skeleton for Thumbnail */}
+          <Grid item xs={12} sm={3}>
+            <Skeleton
+              variant="rectangular"
+              width="100%"
+              height={360}
+              sx={{ backgroundColor: "var(--green)" }}
+            />
+          </Grid>
+
+          {/* Skeleton for Info Section */}
+          <Grid item xs={12} sm={9}>
+            <Box display="flex" flexDirection="column" height="100%">
+              <Skeleton
+                variant="text"
+                width="40%"
+                height={40}
+                sx={{ backgroundColor: "var(--green)" }}
+              />
+              <Skeleton
+                variant="text"
+                width="70%"
+                height={60}
+                sx={{ backgroundColor: "var(--green)" }}
+              />
+              <Box mt={2}>
+                <Skeleton
+                  variant="rectangular"
+                  width="100%"
+                  height={40}
+                  sx={{ backgroundColor: "var(--green)" }}
+                />
+              </Box>
+              <Box mt={2} display="flex" alignItems="center">
+                <Skeleton
+                  variant="text"
+                  width="20%"
+                  height={30}
+                  sx={{ backgroundColor: "var(--green)" }}
+                />
+                <Skeleton
+                  variant="text"
+                  width="20%"
+                  height={30}
+                  sx={{ backgroundColor: "var(--green)", ml: 2 }}
+                />
+              </Box>
+              <Skeleton
+                variant="text"
+                width="50%"
+                height={30}
+                sx={{ backgroundColor: "var(--green)", mt: 2 }}
+              />
+            </Box>
+          </Grid>
+
+          {/* Skeleton for Chapters Section */}
+          <Grid item xs={12} sm={12}>
+            <Box sx={{ maxHeight: "400px", overflowY: "auto" }}>
+              {Array.from(new Array(5)).map((_, index) => (
+                <Box key={index} sx={{ marginBottom: 2 }}>
+                  <Skeleton
+                    variant="rectangular"
+                    width="100%"
+                    height={50}
+                    sx={{ backgroundColor: "var(--green)" }}
+                  />
+                </Box>
+              ))}
+            </Box>
+          </Grid>
+        </Grid>
+      </Container>
+    );
+  }
 
   if (!currentManga) {
     return <Typography>Không tìm thấy dữ liệu chapter.</Typography>;
@@ -68,7 +161,13 @@ function Manga() {
             component="img"
             image={thumbnail}
             alt={title}
-            sx={{ borderRadius: 2, width: "auto", height: "360px" }}
+            sx={{
+              borderRadius: 2,
+              width: "auto",
+              maxWidth: "100%",
+              height: "360px",
+              objectFit: "cover",
+            }}
           />
         </Grid>
 

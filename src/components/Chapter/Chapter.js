@@ -7,6 +7,7 @@ import {
   Menu,
   MenuItem,
   ListItemIcon,
+  Skeleton,
 } from "@mui/material";
 import { useDispatch } from "react-redux";
 import { getChapter } from "../../redux/apiRequest";
@@ -25,21 +26,46 @@ function Chapter() {
     const fetchData = async () => {
       setLoading(true);
       const res = await getChapter(slug, chapter.split("-")[1], dispatch);
+      console.log("Chapter", res);
       setCurrentChapter(res);
       setLoading(false);
     };
     fetchData();
   }, [slug, chapter, dispatch]);
 
+  const skeletonItems = Array.from({ length: 5 }).map((_, index) => (
+    <Skeleton
+      key={index}
+      variant="rectangular"
+      width="100%"
+      height={400}
+      sx={{ marginBottom: "20px", backgroundColor: "var(--green)" }}
+    />
+  ));
+
   if (loading) {
     return (
       <Box
-        display="flex"
-        justifyContent="center"
-        alignItems="center"
-        height="100vh"
+        sx={{
+          padding: "20px 50px",
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+        }}
       >
-        <CircularProgress size={60} />
+        <Skeleton
+          sx={{ backgroundColor: "var(--green)", mb: 2 }}
+          variant="text"
+          width={300}
+          height={40}
+        />
+        <Skeleton
+          sx={{ backgroundColor: "var(--green)", mb: 2 }}
+          variant="text"
+          width={200}
+          height={30}
+        />
+        <Box sx={{ width: "100%" }}>{skeletonItems}</Box>
       </Box>
     );
   }
@@ -98,19 +124,23 @@ function Chapter() {
       </Typography>
 
       <Box sx={{ marginTop: "20px" }}>
-        {images?.map((image, index) => (
-          <Box
-            xs={24}
-            key={index}
-            sx={{ textAlign: "center", marginBottom: "20px" }}
-          >
-            <img
-              src={`${image.src}`}
-              alt={`Page ${image.page}`}
-              style={{ maxWidth: "100%" }}
-            />
-          </Box>
-        ))}
+        {images.length > 0 ? (
+          images?.map((image, index) => (
+            <Box
+              xs={24}
+              key={index}
+              sx={{ textAlign: "center", marginBottom: "20px" }}
+            >
+              <img
+                src={`${image.src}`}
+                alt={`Page ${image.page}`}
+                style={{ maxWidth: "100%" }}
+              />
+            </Box>
+          ))
+        ) : (
+          <h1>Chapter is not available</h1>
+        )}
       </Box>
 
       {/* Chapter Navigation */}

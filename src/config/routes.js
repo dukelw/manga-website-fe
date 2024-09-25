@@ -4,6 +4,7 @@ const routes = {
   sliders: "/management/collection/:collection",
   chapter: "/manga/:slug/:chapter",
   manga: "/manga/:slug",
+  search: "/search/:keySearch",
   signup: "/signup",
   popular: "/popular",
   new: "/new",

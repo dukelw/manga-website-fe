@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { useNavigate, useParams } from "react-router-dom";
 import {
   Box,
   Card,
@@ -9,16 +9,22 @@ import {
   Typography,
   CircularProgress,
   Pagination,
+  Button,
   Skeleton,
 } from "@mui/material";
 import { MenuBook, Visibility } from "@mui/icons-material"; // Import icons
-import styles from "./MangaSection.module.scss";
+import styles from "./Match.module.scss";
 import classNames from "classnames/bind";
-import { getManga } from "../../redux/apiRequest";
+import {
+  getAllMangasBySpecficGenre,
+  getManga,
+  searchMangas,
+} from "../../redux/apiRequest";
 
 const cx = classNames.bind(styles);
 
-const MangaSection = ({ sectionName, fetchMangaFunction }) => {
+const Match = () => {
+  const { keySearch } = useParams();
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [loading, setLoading] = useState(true);
@@ -30,7 +36,7 @@ const MangaSection = ({ sectionName, fetchMangaFunction }) => {
     const fetchData = async () => {
       setLoading(true);
       try {
-        const res = await fetchMangaFunction(currentPage, "", dispatch);
+        const res = await searchMangas(keySearch, currentPage, dispatch);
         console.log(res);
         setMangas(res.comics);
         setTotalPages(res.total_pages);
@@ -42,7 +48,7 @@ const MangaSection = ({ sectionName, fetchMangaFunction }) => {
     };
 
     fetchData();
-  }, [currentPage]);
+  }, [keySearch, currentPage, dispatch]);
 
   const handlePageChange = (event, value) => {
     setCurrentPage(value);
@@ -64,16 +70,16 @@ const MangaSection = ({ sectionName, fetchMangaFunction }) => {
                 variant="rectangular"
                 width="100%"
                 height={250}
-                sx={{ backgroundColor: "var(--green)" }} 
+                sx={{ backgroundColor: "var(--green)" }}
               />
               <Skeleton
                 variant="text"
-                sx={{ backgroundColor: "var(--green)", mt: 1 }} 
+                sx={{ backgroundColor: "var(--green)", mt: 1 }}
               />
               <Skeleton
                 variant="text"
                 width="60%"
-                sx={{ backgroundColor: "var(--green)" }} 
+                sx={{ backgroundColor: "var(--green)" }}
               />
             </Grid>
           ))}
@@ -84,6 +90,7 @@ const MangaSection = ({ sectionName, fetchMangaFunction }) => {
 
   return (
     <Box className={cx("home-container")} padding={6} position="relative">
+      {/* Manga cards */}
       <Typography
         variant="h5"
         component="h5"
@@ -94,12 +101,12 @@ const MangaSection = ({ sectionName, fetchMangaFunction }) => {
           marginBottom: "12px",
         }}
       >
-        {sectionName}
+        {"Manga Match With: " + keySearch}
       </Typography>
 
       <Grid container spacing={2}>
         {mangas.map((manga) => (
-          <Grid item xs={12} sm={6} md={3} lg={1.5} key={manga.id}>
+          <Grid item xs={12} sm={6} md={3} lg={1.714} key={manga.id}>
             <Card
               onClick={async () => {
                 await getManga(manga.id, dispatch);
@@ -132,7 +139,7 @@ const MangaSection = ({ sectionName, fetchMangaFunction }) => {
                   <Box className={cx("info-item")}>
                     <MenuBook sx={{ fontSize: "16px", marginRight: "4px" }} />
                     <Typography sx={{ fontSize: "14px" }}>
-                      {manga.last_chapters[0].name}
+                      {manga.last_chapters[0]?.name}
                     </Typography>
                   </Box>
                   <Box className={cx("info-item")}>
@@ -148,15 +155,16 @@ const MangaSection = ({ sectionName, fetchMangaFunction }) => {
         ))}
       </Grid>
 
+      {/* Pagination */}
       <Box mt={4} display="flex" justifyContent="center">
         <Pagination
           sx={{
             "& .MuiPaginationItem-root": {
               backgroundColor: "var(--black)",
-              color: "var(--yellow)",
+              color: "var(--green)",
             },
             "& .Mui-selected": {
-              backgroundColor: "var(--yellow)",
+              backgroundColor: "var(--green)",
               color: "var(--white)",
             },
           }}
@@ -169,4 +177,4 @@ const MangaSection = ({ sectionName, fetchMangaFunction }) => {
   );
 };
 
-export default MangaSection;
+export default Match;

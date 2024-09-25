@@ -89,6 +89,9 @@ import {
   updateNotificationSuccess,
 } from "./notificationSlice";
 import {
+  findMangasFailure,
+  findMangasStart,
+  findMangasSuccess,
   getAllGenresFailure,
   getAllGenresStart,
   getAllGenresSuccess,
@@ -120,7 +123,6 @@ import {
 } from "./genreSlice";
 
 const REACT_APP_BASE_URL = process.env.REACT_APP_BASE_URL;
-const REACT_APP_MANGA_URL = process.env.REACT_APP_MANGA_URL;
 
 // Start genre
 
@@ -183,6 +185,38 @@ export const getAllMangasByGenre = async (page, status = "", dispatch) => {
 // End genre
 
 // Start manga
+
+export const searchSuggestMangas = async (keySearch, dispatch) => {
+  dispatch(findMangasStart());
+  try {
+    const res = await axios.get(`/search-suggest?q=${keySearch}`, {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    dispatch(findMangasSuccess(res.data));
+    return res.data;
+  } catch (error) {
+    console.error("Error fetching answer:", error);
+    dispatch(findMangasFailure());
+  }
+};
+
+export const searchMangas = async (keySearch, page, dispatch) => {
+  dispatch(findMangasStart());
+  try {
+    const res = await axios.get(`/search?q=${keySearch}&page=${page}`, {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    dispatch(findMangasSuccess(res.data));
+    return res.data;
+  } catch (error) {
+    console.error("Error fetching answer:", error);
+    dispatch(findMangasFailure());
+  }
+};
 
 export const getManga = async (ID, dispatch) => {
   dispatch(getMangaStart());

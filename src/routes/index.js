@@ -19,6 +19,7 @@ import Popular from "../pages/Popular";
 import Genres from "../pages/Genres";
 import SpecificGenre from "../pages/SpecificGenre";
 import New from "../pages/New";
+import Match from "../pages/Match";
 
 const publicRoutes = [
   { path: config.routes.signin, component: Signin, layout: null },
@@ -33,6 +34,7 @@ const publicRoutes = [
   { path: config.routes.specificGenre, component: SpecificGenre },
   { path: config.routes.genres, component: Genres },
   { path: config.routes.new, component: New },
+  { path: config.routes.search, component: Match },
 ];
 
 const privateRoutes = [
