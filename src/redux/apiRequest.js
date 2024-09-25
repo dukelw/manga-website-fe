@@ -344,11 +344,12 @@ export const signupAnotherWay = async (user, dispatch, navigate) => {
       `${REACT_APP_BASE_URL}user/other-signup`,
       user
     );
-    const refreshToken = res.data?.metadata?.metadata?.tokens?.refreshToken;
+    console.log("Res", res.data);
+    const refreshToken = res.data?.metadata?.tokens?.refreshToken;
     localStorage.setItem("refreshToken", refreshToken);
     dispatch(userSignupSuccess());
     dispatch(userSigninSuccess(res.data));
-    navigate("/welcome");
+    navigate("/");
   } catch (error) {
     dispatch(userSignupFailure());
     return false;

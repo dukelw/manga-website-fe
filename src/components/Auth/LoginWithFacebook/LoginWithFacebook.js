@@ -4,7 +4,7 @@ import { signupAnotherWay } from "../../../redux/apiRequest";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
-function App() {
+function LoginWithFacebook() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   return (
@@ -35,4 +35,4 @@ function App() {
   );
 }
 
-export default App;
+export default LoginWithFacebook;

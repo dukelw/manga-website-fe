@@ -1,0 +1,25 @@
+.actions-container {
+  background-color: var(--grey);
+  width: fit-content;
+  min-height: unset;
+
+  .actions {
+    max-width: fit-content;
+    font-family: var(--font-family);
+
+    a {
+      text-decoration: none;
+      color: var(--white);
+
+      &:hover {
+        color: var(--yellow);
+        cursor: pointer;
+      }
+    }
+
+    &:hover {
+      color: var(--yellow);
+      cursor: pointer;
+    }
+  }
+}

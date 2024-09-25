@@ -5,15 +5,13 @@ import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import Box from "@mui/material/Box";
 import { useDispatch } from "react-redux";
-import classNames from "classnames/bind";
 import Cookies from "js-cookie";
-import styles from "./Signup.css";
 import { signup } from "../../redux/apiRequest";
-import { Checkbox, FormControlLabel } from "@mui/material";
+import { Checkbox, Divider, FormControlLabel, Typography } from "@mui/material";
 import Snackbar from "@mui/material/Snackbar";
 import MuiAlert from "@mui/material/Alert";
-
-const cx = classNames.bind(styles);
+import LoginWithFacebook from "../Auth/LoginWithFacebook";
+import LoginWithGoogle from "../Auth/LoginWithGoogle";
 
 function Signup() {
   const [name, setName] = useState("");
@@ -55,9 +53,16 @@ function Signup() {
 
   return (
     <Container>
-      <h1>SIGN UP</h1>
-      <form onSubmit={handleSubmit} className={cx("form")}>
-        <Box mb={2}>
+      <h1 style={{ color: "var(--white)" }}>SIGN UP</h1>
+      <form
+        onSubmit={handleSubmit}
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+        }}
+      >
+        <Box mb={2} sx={{ width: "100%" }}>
           <TextField
             fullWidth
             label="Name"
@@ -66,9 +71,24 @@ function Signup() {
             onChange={(e) => setName(e.target.value)}
             error={!name && openSnackbar}
             helperText={!name && openSnackbar ? "Name is required" : ""}
+            sx={{
+              input: { color: "var(--white)" },
+              label: { color: "var(--white)" },
+              "& .MuiInputLabel-root": {
+                color: "var(--white)",
+              },
+              "& .MuiInputLabel-root.Mui-focused": {
+                color: "var(--green)",
+              },
+              "& .MuiOutlinedInput-root": {
+                "& fieldset": { borderColor: "var(--white)" },
+                "&:hover fieldset": { borderColor: "var(--white)" },
+                "&.Mui-focused fieldset": { borderColor: "var(--green)" },
+              },
+            }}
           />
         </Box>
-        <Box mb={2}>
+        <Box mb={2} sx={{ width: "100%" }}>
           <TextField
             fullWidth
             label="Email"
@@ -78,9 +98,24 @@ function Signup() {
             onChange={(e) => setEmail(e.target.value)}
             error={!email && openSnackbar}
             helperText={!email && openSnackbar ? "Email is required" : ""}
+            sx={{
+              input: { color: "var(--white)" },
+              label: { color: "var(--white)" },
+              "& .MuiInputLabel-root": {
+                color: "var(--white)",
+              },
+              "& .MuiInputLabel-root.Mui-focused": {
+                color: "var(--green)",
+              },
+              "& .MuiOutlinedInput-root": {
+                "& fieldset": { borderColor: "var(--white)" },
+                "&:hover fieldset": { borderColor: "var(--white)" },
+                "&.Mui-focused fieldset": { borderColor: "var(--green)" },
+              },
+            }}
           />
         </Box>
-        <Box mb={2}>
+        <Box mb={2} sx={{ width: "100%" }}>
           <TextField
             fullWidth
             label="Password"
@@ -90,30 +125,102 @@ function Signup() {
             onChange={(e) => setPassword(e.target.value)}
             error={!password && openSnackbar}
             helperText={!password && openSnackbar ? "Password is required" : ""}
+            sx={{
+              input: { color: "var(--white)" },
+              label: { color: "var(--white)" },
+              "& .MuiInputLabel-root": {
+                color: "var(--white)",
+              },
+              "& .MuiInputLabel-root.Mui-focused": {
+                color: "var(--green)",
+              },
+              "& .MuiOutlinedInput-root": {
+                "& fieldset": { borderColor: "var(--white)" },
+                "&:hover fieldset": { borderColor: "var(--white)" },
+                "&.Mui-focused fieldset": { borderColor: "var(--green)" },
+              },
+            }}
           />
         </Box>
-        <Box mb={2}>
+        <Box mb={2} sx={{ width: "100%" }}>
           <FormControlLabel
             control={
               <Checkbox
                 checked={rememberMe}
                 onChange={(e) => setRememberMe(e.target.checked)}
-                color="primary"
+                sx={{
+                  color: "var(--green)",
+                  "&.Mui-checked": {
+                    color: "var(--green)",
+                  },
+                }}
               />
             }
             label="Remember me"
+            sx={{ color: "var(--white)" }}
           />
-          <Link className={cx("link")} to="/signin">
+          <Link
+            to="/signin"
+            style={{
+              color: "var(--yellow)",
+              textDecoration: "none",
+              marginLeft: "8px",
+            }}
+          >
             Sign in
           </Link>
         </Box>
-        <Box mb={2}>
-          <Button type="submit" variant="contained" color="primary" fullWidth>
+        <Box mb={2} sx={{ width: "100%" }}>
+          <Button
+            type="submit"
+            variant="contained"
+            sx={{
+              width: "100%",
+              backgroundColor: "var(--green)",
+              color: "var(--black)",
+              fontWeight: "bold",
+              "&:hover": {
+                backgroundColor: "var(--black)",
+                color: "var(--green)",
+                border: "2px solid var(--green)",
+              },
+            }}
+          >
             Sign up
           </Button>
         </Box>
       </form>
-      <Link className={cx("link")} to="/">
+      <Box
+        sx={{
+          display: "flex",
+          alignItems: "center",
+          width: "100%",
+          margin: "20px 0",
+        }}
+      >
+        <Divider sx={{ flex: 1, borderColor: "var(--white)" }} />
+        <Typography
+          variant="body1"
+          sx={{ color: "var(--white)", padding: "0 10px" }}
+        >
+          Or
+        </Typography>
+        <Divider sx={{ flex: 1, borderColor: "var(--white)" }} />
+      </Box>
+
+      <Box
+        mb={2}
+        sx={{
+          display: "flex",
+          justifyContent: "center",
+          gap: "20px",
+        }}
+      >
+        <LoginWithGoogle />
+        <LoginWithFacebook />
+      </Box>
+
+      <Link to="/" style={{ color: "var(--yellow)", textDecoration: "none" }}>
         Go to HomePage
       </Link>
       <Snackbar

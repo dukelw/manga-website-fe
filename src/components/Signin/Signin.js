@@ -13,6 +13,9 @@ import styles from "./Signin.css";
 import { signin } from "../../redux/apiRequest";
 import Snackbar from "@mui/material/Snackbar";
 import MuiAlert from "@mui/material/Alert";
+import { Divider, Typography } from "@mui/material";
+import LoginWithFacebook from "../Auth/LoginWithFacebook";
+import LoginWithGoogle from "../Auth/LoginWithGoogle";
 
 const cx = classNames.bind(styles);
 
@@ -67,9 +70,9 @@ function Signin() {
 
   return (
     <Container>
-      <h1>SIGN IN</h1>
+      <h1 style={{ color: "var(--white)" }}>SIGN IN</h1>
       <form onSubmit={handleSubmit} className={cx("form")}>
-        <Box mb={2}>
+        <Box mb={2} sx={{ width: "100%" }}>
           <TextField
             fullWidth
             label="Email"
@@ -79,9 +82,24 @@ function Signin() {
             onChange={(e) => setEmail(e.target.value)}
             error={!email && openSnackbar}
             helperText={!email && openSnackbar ? "Email is required" : ""}
+            sx={{
+              input: { color: "var(--white)" },
+              label: { color: "var(--white)" },
+              "& .MuiInputLabel-root": {
+                color: "var(--white)",
+              },
+              "& .MuiInputLabel-root.Mui-focused": {
+                color: "var(--green)",
+              },
+              "& .MuiOutlinedInput-root": {
+                "& fieldset": { borderColor: "var(--white)" },
+                "&:hover fieldset": { borderColor: "var(--white)" },
+                "&.Mui-focused fieldset": { borderColor: "var(--green)" },
+              },
+            }}
           />
         </Box>
-        <Box mb={2}>
+        <Box mb={2} sx={{ width: "100%" }}>
           <TextField
             fullWidth
             label="Password"
@@ -91,30 +109,106 @@ function Signin() {
             onChange={(e) => setPassword(e.target.value)}
             error={!password && openSnackbar}
             helperText={!password && openSnackbar ? "Password is required" : ""}
+            sx={{
+              input: { color: "var(--white)" },
+              label: { color: "var(--white)" },
+              "& .MuiInputLabel-root": {
+                color: "var(--white)",
+              },
+              "& .MuiInputLabel-root.Mui-focused": {
+                color: "var(--green)",
+              },
+              "& .MuiOutlinedInput-root": {
+                "& fieldset": { borderColor: "var(--white)" },
+                "&:hover fieldset": { borderColor: "var(--white)" },
+                "&.Mui-focused fieldset": { borderColor: "var(--green)" },
+              },
+            }}
           />
         </Box>
-        <Box mb={2}>
+        <Box mb={2} sx={{ width: "100%" }}>
           <FormControlLabel
             control={
               <Checkbox
                 checked={rememberMe}
                 onChange={(e) => setRememberMe(e.target.checked)}
-                color="primary"
+                sx={{
+                  color: "var(--green)",
+                  "&.Mui-checked": {
+                    color: "var(--green)",
+                  },
+                }}
               />
             }
             label="Remember me"
+            sx={{ color: "var(--white)" }}
           />
-          <Link className={cx("link")} to="/signup">
+          <Link
+            className={cx("link")}
+            to="/signup"
+            style={{
+              color: "var(--yellow)",
+              textDecoration: "none",
+              marginLeft: "8px",
+            }}
+          >
             Sign up
           </Link>
         </Box>
-        <Box mb={2}>
-          <Button type="submit" variant="contained" color="primary" fullWidth>
+        <Box mb={2} sx={{ width: "100%" }}>
+          <Button
+            type="submit"
+            variant="contained"
+            sx={{
+              width: "100%",
+              backgroundColor: "var(--green)",
+              color: "var(--black)",
+              fontWeight: "bold",
+              "&:hover": {
+                backgroundColor: "var(--black)",
+                color: "var(--green)",
+                border: "2px solid var(--green)",
+              },
+            }}
+          >
             Sign in
           </Button>
         </Box>
       </form>
-      <Link className={cx("link")} to="/">
+      <Box
+        sx={{
+          display: "flex",
+          alignItems: "center",
+          width: "100%",
+          margin: "20px 0",
+        }}
+      >
+        <Divider sx={{ flex: 1, borderColor: "var(--white)" }} />
+        <Typography
+          variant="body1"
+          sx={{ color: "var(--white)", padding: "0 10px" }}
+        >
+          Or
+        </Typography>
+        <Divider sx={{ flex: 1, borderColor: "var(--white)" }} />
+      </Box>
+
+      <Box
+        mb={2}
+        sx={{
+          display: "flex",
+          justifyContent: "center",
+          gap: "20px",
+        }}
+      >
+        <LoginWithGoogle />
+        <LoginWithFacebook />
+      </Box>
+      <Link
+        className={cx("link")}
+        to="/"
+        style={{ color: "var(--yellow)", textDecoration: "none" }}
+      >
         Go to HomePage
       </Link>
       <Snackbar

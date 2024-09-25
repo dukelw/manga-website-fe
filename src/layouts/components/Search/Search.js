@@ -55,7 +55,6 @@ function CustomSearch() {
 
   const handleResultClick = (id) => {
     setShowResult(false);
-
     navigate(`/manga/${id}`);
   };
 

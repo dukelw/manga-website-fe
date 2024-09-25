@@ -10,15 +10,33 @@ import {
   Avatar,
 } from "@mui/material";
 import { Notifications } from "@mui/icons-material";
-import { Link, useLocation } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 import Search from "../Search";
+import HeadlessTippy from "@tippyjs/react/headless";
+import "tippy.js/dist/tippy.css";
+import { Wrapper as PopperWrapper } from "../../../components/Popper";
+import { createAxios } from "../../../createAxios";
+import styles from "./Header.module.scss";
+import classNames from "classnames/bind";
+import { logout } from "../../../redux/apiRequest";
+
+const cx = classNames.bind(styles);
 
 function Header() {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [anchorEl, setAnchorEl] = useState(null);
   const isMenuOpen = Boolean(anchorEl);
   const location = useLocation();
+  const currentUser = useSelector((state) => state?.user?.signin?.currentUser);
+  const accessToken = currentUser?.metadata.tokens.accessToken;
+  const userID = currentUser?.metadata.user._id;
+  const axiosJWT = createAxios(currentUser);
+
+  const handleLogout = () => {
+    logout(accessToken, userID, dispatch, navigate, axiosJWT);
+  };
 
   const handleMenuOpen = (event) => {
     setAnchorEl(event.currentTarget);
@@ -110,26 +128,76 @@ function Header() {
           <IconButton color="inherit">
             <Notifications />
           </IconButton>
-          <IconButton onClick={handleMenuOpen} color="inherit">
-            <Avatar />
-          </IconButton>
+          <HeadlessTippy
+            interactive
+            visible={isMenuOpen}
+            placement="bottom-end"
+            render={(attrs) => (
+              <div tabIndex={-1} {...attrs}>
+                <PopperWrapper className={cx("actions-container")}>
+                  {currentUser ? (
+                    <>
+                      <MenuItem
+                        className={cx("actions")}
+                        onClick={handleMenuClose}
+                      >
+                        Account
+                      </MenuItem>
+                      <MenuItem
+                        className={cx("actions")}
+                        onClick={handleMenuClose}
+                      >
+                        History
+                      </MenuItem>
+                      <MenuItem
+                        className={cx("actions")}
+                        onClick={handleMenuClose}
+                      >
+                        Save
+                      </MenuItem>
+                      <MenuItem
+                        className={cx("actions")}
+                        onClick={() => {
+                          handleMenuClose();
+                          handleLogout();
+                        }}
+                      >
+                        Signout
+                      </MenuItem>
+                    </>
+                  ) : (
+                    <>
+                      <MenuItem
+                        className={cx("actions")}
+                        onClick={handleMenuClose}
+                      >
+                        <Link to={"/signup"}>Signup</Link>
+                      </MenuItem>
+                      <MenuItem
+                        className={cx("actions")}
+                        onClick={handleMenuClose}
+                      >
+                        <Link to={"/signin"}>Signin</Link>
+                      </MenuItem>
+                    </>
+                  )}
+                </PopperWrapper>
+              </div>
+            )}
+            onClickOutside={handleMenuClose}
+          >
+            <div className={cx("search")}>
+              <IconButton onClick={handleMenuOpen} color="inherit">
+                <Avatar
+                  src={
+                    currentUser?.metadata.user.user_avatar ||
+                    "/default-avatar.png"
+                  }
+                />
+              </IconButton>
+            </div>
+          </HeadlessTippy>
         </Box>
-
-        {/* Menu for Avatar */}
-        <Menu
-          anchorEl={anchorEl}
-          anchorOrigin={{ vertical: "top", horizontal: "right" }}
-          id={menuId}
-          keepMounted
-          transformOrigin={{ vertical: "top", horizontal: "right" }}
-          open={isMenuOpen}
-          onClose={handleMenuClose}
-        >
-          <MenuItem onClick={handleMenuClose}>Thông tin cá nhân</MenuItem>
-          <MenuItem onClick={handleMenuClose}>Lịch sử đọc truyện</MenuItem>
-          <MenuItem onClick={handleMenuClose}>Truyện đã lưu</MenuItem>
-          <MenuItem onClick={handleMenuClose}>Đăng xuất</MenuItem>
-        </Menu>
       </Toolbar>
     </AppBar>
   );
