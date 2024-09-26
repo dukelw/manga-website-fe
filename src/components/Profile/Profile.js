@@ -81,7 +81,7 @@ function Profile() {
           email: infoUser?.email || "",
           avatar: infoUser?.avatar || "/path/to/avatar.jpg",
           phone: infoUser?.phone || "",
-          gender: infoUser?.gender || "male",
+          gender: infoUser?.gender || "Male",
           birthDay: day,
           birthMonth: month,
           birthYear: year,
@@ -100,10 +100,10 @@ function Profile() {
   const handleSaveClick = async () => {
     try {
       let avatar = "";
-      const uploadedImage = await uploadImage(avatarFile, "", dispatch);
+      const uploadedImage = await uploadImage(avatarFile, dispatch);
 
       if (uploadedImage) {
-        avatar = uploadedImage.img_url;
+        avatar = uploadedImage.metadata.url;
       }
       const updatedProfile = {
         ...profile,
@@ -127,7 +127,13 @@ function Profile() {
   return (
     <Container sx={{ width: isMobile ? "82vw" : "100%" }} maxWidth="md">
       <h1>Your Profile</h1>
-      <Paper elevation={3} sx={{ padding: 4 }}>
+      <Paper
+        elevation={3}
+        sx={{
+          padding: 4,
+          backgroundColor: "var(--black)",
+        }}
+      >
         <Grid container spacing={2} alignItems="center" justifyContent="center">
           <Grid sx={{ textAlign: "center" }} item>
             <Avatar
@@ -139,7 +145,21 @@ function Profile() {
               <Button
                 variant="contained"
                 component="label"
-                sx={{ marginTop: 2 }}
+                sx={{
+                  marginTop: 2,
+                  color: "var(--black)",
+                  padding: "4px 8px",
+                  fontSize: "12px",
+                  backgroundColor: "var(--green)",
+                  fontWeight: "600",
+                  fontFamily: "var(--font-family)",
+                  borderColor: "1px solid var(--black)",
+                  "&:hover": {
+                    color: "var(--green)",
+                    backgroundColor: "var(--black)",
+                    border: "1px solid var(--green)",
+                  },
+                }}
               >
                 Change
                 <input
@@ -152,7 +172,12 @@ function Profile() {
             )}
           </Grid>
           <Grid item>
-            <IconButton onClick={handleEditClick}>
+            <IconButton
+              onClick={handleEditClick}
+              sx={{
+                color: "var(--green)",
+              }}
+            >
               {isEditing ? (
                 <SaveIcon onClick={handleSaveClick} />
               ) : (
@@ -163,126 +188,101 @@ function Profile() {
         </Grid>
 
         <Grid container spacing={2} alignItems="center" sx={{ marginTop: 2 }}>
-          <Grid item xs={12}>
-            <TextField
-              fullWidth
-              label="Name"
-              variant="outlined"
-              value={profile.name}
-              name="name"
-              onChange={handleInputChange}
-              InputProps={{
-                readOnly: !isEditing,
-              }}
-            />
-          </Grid>
-          <Grid item xs={12}>
-            <TextField
-              fullWidth
-              label="Email"
-              variant="outlined"
-              value={profile.email}
-              name="email"
-              onChange={handleInputChange}
-              InputProps={{
-                readOnly: !isEditing,
-              }}
-            />
-          </Grid>
-          <Grid item xs={12}>
-            <TextField
-              fullWidth
-              label="Phone"
-              variant="outlined"
-              value={profile.phone}
-              name="phone"
-              onChange={handleInputChange}
-              InputProps={{
-                readOnly: !isEditing,
-              }}
-            />
-          </Grid>
-          <Grid item xs={12}>
-            <TextField
-              fullWidth
-              label="Gender"
-              variant="outlined"
-              value={profile.gender}
-              name="gender"
-              onChange={handleInputChange}
-              InputProps={{
-                readOnly: !isEditing,
-              }}
-            />
-          </Grid>
+          {["name", "email", "phone", "gender"].map((field, index) => (
+            <Grid item xs={12} key={index}>
+              <TextField
+                fullWidth
+                label={field.charAt(0).toUpperCase() + field.slice(1)}
+                variant="outlined"
+                value={profile[field]}
+                name={field}
+                onChange={handleInputChange}
+                InputProps={{
+                  readOnly: !isEditing,
+                  sx: {
+                    color: "var(--green)",
+                    "& .MuiOutlinedInput-notchedOutline": {
+                      borderColor: "var(--green)",
+                    },
+                    "&:hover .MuiOutlinedInput-notchedOutline": {
+                      borderColor: "var(--green)",
+                    },
+                    "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+                      borderColor: "var(--green)",
+                    },
+                    "&::placeholder": {
+                      color: "var(--green)",
+                    },
+                  },
+                }}
+                InputLabelProps={{
+                  sx: {
+                    color: "var(--green)",
+                    "&.Mui-focused": {
+                      color: "var(--green)",
+                    },
+                  },
+                }}
+              />
+            </Grid>
+          ))}
 
-          <Grid item xs={4}>
-            <TextField
-              fullWidth
-              label="Day"
-              variant="outlined"
-              value={profile.birthDay}
-              name="birthDay"
-              onChange={handleInputChange}
-              InputProps={{
-                readOnly: !isEditing,
-              }}
-            />
-          </Grid>
-          <Grid item xs={4}>
-            <TextField
-              fullWidth
-              label="Month"
-              variant="outlined"
-              value={profile.birthMonth}
-              name="birthMonth"
-              onChange={handleInputChange}
-              InputProps={{
-                readOnly: !isEditing,
-              }}
-            />
-          </Grid>
-          <Grid item xs={4}>
-            <TextField
-              fullWidth
-              label="Year"
-              variant="outlined"
-              value={profile.birthYear}
-              name="birthYear"
-              onChange={handleInputChange}
-              InputProps={{
-                readOnly: !isEditing,
-              }}
-            />
-          </Grid>
-
-          <Grid item xs={6}>
-            <TextField
-              fullWidth
-              label="Total Tests"
-              variant="outlined"
-              value={profile.totalTests}
-              name="totalTests"
-              InputProps={{
-                readOnly: true,
-              }}
-            />
-          </Grid>
-          <Grid item xs={6}>
-            <TextField
-              fullWidth
-              label="Highest Score"
-              variant="outlined"
-              value={profile.highestScore}
-              name="highestScore"
-              InputProps={{
-                readOnly: true,
-              }}
-            />
+          {/* BirthDay, BirthMonth, BirthYear in one row */}
+          <Grid item xs={12}>
+            <Grid container spacing={2}>
+              {["birthDay", "birthMonth", "birthYear"].map((field, index) => (
+                <Grid item xs={4} key={index}>
+                  <TextField
+                    fullWidth
+                    label={
+                      field === "birthDay"
+                        ? "Day"
+                        : field === "birthMonth"
+                        ? "Month"
+                        : "Year"
+                    }
+                    variant="outlined"
+                    value={profile[field]}
+                    name={field}
+                    onChange={handleInputChange}
+                    InputProps={{
+                      readOnly: !isEditing,
+                      sx: {
+                        color: "var(--green)",
+                        "& .MuiOutlinedInput-notchedOutline": {
+                          borderColor: "var(--green)",
+                        },
+                        "&:hover .MuiOutlinedInput-notchedOutline": {
+                          borderColor: "var(--green)",
+                        },
+                        "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+                          borderColor: "var(--green)",
+                        },
+                        "&::placeholder": {
+                          color: "var(--green)",
+                        },
+                      },
+                    }}
+                    InputLabelProps={{
+                      sx: {
+                        color: "var(--green)",
+                        "&.Mui-focused": {
+                          color: "var(--green)",
+                        },
+                      },
+                    }}
+                  />
+                </Grid>
+              ))}
+            </Grid>
           </Grid>
 
           <Grid item xs={12}>
-            <Typography variant="body1" align="center">
+            <Typography
+              variant="body1"
+              align="center"
+              sx={{ color: "var(--green)" }}
+            >
               Day Join Our Site: {profile.createdAt}
             </Typography>
           </Grid>

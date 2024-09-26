@@ -3,6 +3,7 @@ import userReducer from "./userSlice";
 import mangaReducer from "./mangaSlice";
 import genreReducer from "./genreSlice";
 import historyReducer from "./historySlice";
+import favouriteReducer from "./favouriteSlice";
 import chapterReducer from "./chapterSlice";
 import uploadReducer from "./uploadSlice";
 import sliderReducer from "./sliderSlice";
@@ -30,6 +31,7 @@ const persistConfig = {
 const rootReducer = combineReducers({
   manga: mangaReducer,
   genre: genreReducer,
+  favourite: favouriteReducer,
   chapter: chapterReducer,
   history: historyReducer,
   user: userReducer,

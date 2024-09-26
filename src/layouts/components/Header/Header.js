@@ -141,7 +141,13 @@ function Header() {
                         className={cx("actions")}
                         onClick={handleMenuClose}
                       >
-                        Account
+                        <Link to={`/profile/${userID}`}>Profile</Link>
+                      </MenuItem>
+                      <MenuItem
+                        className={cx("actions")}
+                        onClick={handleMenuClose}
+                      >
+                        <Link to={`/account/${userID}`}>Account</Link>
                       </MenuItem>
                       <MenuItem
                         className={cx("actions")}
@@ -153,7 +159,7 @@ function Header() {
                         className={cx("actions")}
                         onClick={handleMenuClose}
                       >
-                        Save
+                        <Link to={"/favourite"}>Favourite</Link>
                       </MenuItem>
                       <MenuItem
                         className={cx("actions")}

@@ -129,6 +129,14 @@ import {
   getFullHistoryStart,
   getFullHistorySuccess,
 } from "./historySlice";
+import {
+  createFavouriteFailure,
+  createFavouriteStart,
+  createFavouriteSuccess,
+  getFavouriteFailure,
+  getFavouriteStart,
+  getFavouriteSuccess,
+} from "./favouriteSlice";
 
 const REACT_APP_BASE_URL = process.env.REACT_APP_BASE_URL;
 
@@ -191,6 +199,59 @@ export const getAllMangasByGenre = async (page, status = "", dispatch) => {
 };
 
 // End genre
+
+// Start favourite
+
+export const getFavourite = async (userID, accessToken, dispatch, axiosJWT) => {
+  dispatch(getFavouriteStart());
+  try {
+    const res = await axiosJWT.get(
+      `${REACT_APP_BASE_URL}favourite/find-all/${userID}`,
+      {
+        headers: {
+          "Content-Type": "application/json",
+          authorization: `${accessToken}`,
+        },
+      }
+    );
+    dispatch(getFavouriteSuccess(res.data));
+    return res.data;
+  } catch (error) {
+    console.error("Error fetching favourite:", error);
+    dispatch(getFavouriteFailure());
+  }
+};
+
+export const createFavourite = async (
+  userID,
+  mangaID,
+  accessToken,
+  dispatch,
+  axiosJWT
+) => {
+  dispatch(createFavouriteStart());
+  try {
+    const res = await axiosJWT.post(
+      `${REACT_APP_BASE_URL}favourite`,
+      {
+        userID,
+        mangaID,
+      },
+      {
+        headers: {
+          "Content-Type": "application/json",
+          authorization: `${accessToken}`,
+        },
+      }
+    );
+    dispatch(createFavouriteSuccess(res.data));
+  } catch (error) {
+    dispatch(createFavouriteFailure());
+    return false;
+  }
+};
+
+// End favourite
 
 // Start history
 
@@ -585,18 +646,17 @@ export const banUser = async (
 // End user
 
 // Upload
-export const uploadImage = async (file, folderName, dispatch) => {
+export const uploadImage = async (file, dispatch) => {
   const formData = new FormData();
   formData.append("file", file);
-  formData.append("folderName", folderName);
   dispatch(uploadImageStart());
   try {
     const res = await axios.post(
-      `${REACT_APP_BASE_URL}upload/answer-image`,
+      `${REACT_APP_BASE_URL}upload/thumb-s3`,
       formData,
       {
         headers: {
-          "Content-Type": "multipart/form-data",
+          "Content-Type": "form-data",
         },
       }
     );
@@ -604,27 +664,6 @@ export const uploadImage = async (file, folderName, dispatch) => {
     return res.data;
   } catch (error) {
     dispatch(uploadImageFailure());
-  }
-};
-
-export const uploadAudio = async (audio, dispatch) => {
-  const formData = new FormData();
-  formData.append("audio", audio);
-  dispatch(uploadAudioStart());
-  try {
-    const res = await axios.post(
-      `${REACT_APP_BASE_URL}upload/answer-audio`,
-      formData,
-      {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-      }
-    );
-    dispatch(uploadAudioSuccess(res.data));
-    return res.data;
-  } catch (error) {
-    dispatch(uploadAudioFailure());
   }
 };
 

@@ -7,6 +7,7 @@ const routes = {
   search: "/search/:keySearch",
   signup: "/signup",
   history: "/history",
+  favourite: "/favourite",
   popular: "/popular",
   new: "/new",
   specificGenre: "/genres/:genreID",

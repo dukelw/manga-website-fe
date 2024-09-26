@@ -17,7 +17,11 @@ import ThumbUpIcon from "@mui/icons-material/ThumbUp";
 import PeopleIcon from "@mui/icons-material/People";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import { createAxios } from "../../createAxios";
-import { createHistory, getManga } from "../../redux/apiRequest";
+import {
+  createFavourite,
+  createHistory,
+  getManga,
+} from "../../redux/apiRequest";
 
 function Manga() {
   const currentUser = useSelector((state) => state.user.signin.currentUser);
@@ -29,6 +33,10 @@ function Manga() {
   const navigate = useNavigate();
   const [isExpanded, setIsExpanded] = useState(false);
   const [loading, setLoading] = useState(true);
+
+  const handleFavourite = () => {
+    createFavourite(userID, slug, accessToken, dispatch, axiosJWT);
+  };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -350,26 +358,27 @@ function Manga() {
                 Collapse
               </Button>
             </Box>
-            <Button
-              onClick={() => {
-                navigate(`chap-${1}`);
-              }}
-              variant="outlined"
-              sx={{
-                marginTop: 2,
-                backgroundColor: "var(--green)",
-                color: "var(--black)",
-                fontWeight: "600",
-                maxWidth: "200px",
-                "&:hover": {
-                  color: "var(--green)",
-                  backgroundColor: "var(--black)",
-                  border: "1px solid var(--green)",
-                },
-              }}
-            >
-              Read Now
-            </Button>
+            <Box display="flex" alignItems="center" marginTop={2}>
+              {currentUser ? (
+                <Button
+                  variant="contained"
+                  onClick={handleFavourite}
+                  endIcon={<SaveIcon />}
+                  sx={{
+                    marginTop: "10px",
+                    backgroundColor: "var(--green)",
+                    fontFamily: "var(--font-family)",
+                    "&:hover": {
+                      backgroundColor: "var(--yellow)",
+                    },
+                  }}
+                >
+                  Favourite
+                </Button>
+              ) : (
+                ""
+              )}
+            </Box>
           </Box>
         </Grid>
 

@@ -1,0 +1,62 @@
+.card-image {
+  height: 200px;
+  object-fit: cover;
+}
+
+.card-description {
+  background-color: transparent;
+}
+
+.manga-card {
+  position: relative;
+  border-radius: 8px;
+  overflow: hidden;
+  transition: transform 0.3s, box-shadow 0.3s;
+
+  &:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  }
+
+  .card-media {
+    position: relative;
+    cursor: pointer;
+  }
+
+  .overlay {
+    position: absolute;
+    bottom: 0;
+    width: 90%;
+    height: 30%;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent); // Tạo bóng đen từ dưới lên
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 8px;
+  }
+
+  .title {
+    font-size: 1rem;
+    font-weight: bold;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .info {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.875rem;
+
+    .chapter {
+      color: #ddd;
+      font-weight: 500;
+    }
+
+    .views {
+      color: #ddd;
+      font-weight: 500;
+    }
+  }
+}
