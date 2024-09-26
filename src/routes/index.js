@@ -22,11 +22,13 @@ import New from "../pages/New";
 import Match from "../pages/Match";
 import History from "../pages/History";
 import Favourite from "../pages/Favourite";
+import CommentSection from "../components/CommentSection/CommentSection";
 
 const publicRoutes = [
   { path: config.routes.signin, component: Signin, layout: null },
   { path: config.routes.signup, component: Signup, layout: null },
   { path: config.routes.home, component: HomePage },
+  { path: config.routes.comment, component: CommentSection },
   { path: config.routes.history, component: History },
   { path: config.routes.document, component: Document },
   { path: config.routes.notFound, component: NotFound },

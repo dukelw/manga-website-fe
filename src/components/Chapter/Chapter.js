@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import {
   Box,
   Typography,
-  CircularProgress,
   Button,
   Menu,
   MenuItem,
@@ -13,6 +12,9 @@ import { useDispatch } from "react-redux";
 import { getChapter } from "../../redux/apiRequest";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
+import CommentSection from "../CommentSection";
+import { Drawer, IconButton } from "@mui/material";
+import CommentIcon from "@mui/icons-material/Comment";
 
 function Chapter() {
   const dispatch = useDispatch();
@@ -21,6 +23,11 @@ function Chapter() {
   const [currentChapter, setCurrentChapter] = useState(null);
   const [loading, setLoading] = useState(true);
   const [anchorEl, setAnchorEl] = useState(null);
+  const [openCommentDrawer, setOpenCommentDrawer] = useState(false);
+
+  const toggleCommentDrawer = () => {
+    setOpenCommentDrawer((prev) => !prev);
+  };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -235,6 +242,36 @@ function Chapter() {
           </MenuItem>
         ))}
       </Menu>
+      <IconButton
+        onClick={toggleCommentDrawer}
+        sx={{
+          position: "fixed",
+          left: "20px",
+          bottom: "20px",
+          backgroundColor: "var(--green)",
+          color: "var(--black)",
+          "&:hover": {
+            backgroundColor: "var(--black)",
+            color: "var(--green)",
+          },
+        }}
+      >
+        <CommentIcon />
+      </IconButton>
+      <Drawer
+        anchor="left"
+        open={openCommentDrawer}
+        onClose={toggleCommentDrawer}
+        sx={{
+          "& .MuiDrawer-paper": {
+            backgroundColor: "var(--black)",
+            width: "300px",
+            padding: "20px",
+          },
+        }}
+      >
+        <CommentSection mangaID={slug + chapter} />
+      </Drawer>
     </Box>
   );
 }

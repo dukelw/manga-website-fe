@@ -885,7 +885,7 @@ export const deleteCollection = async (
 export const getComments = async (ID, dispatch) => {
   dispatch(getParentStart());
   try {
-    const res = await axios.get(`${REACT_APP_BASE_URL}comment/answer/${ID}`, {
+    const res = await axios.get(`${REACT_APP_BASE_URL}comment/manga/${ID}`, {
       headers: {
         "Content-Type": "application/json",
       },
@@ -893,15 +893,15 @@ export const getComments = async (ID, dispatch) => {
     dispatch(getParentSuccess(res.data));
     return res.data;
   } catch (error) {
-    console.error("Error fetching answer:", error);
+    console.error("Error fetching comment:", error);
     dispatch(getParentFailure());
   }
 };
 
-export const getReply = async (answerID, commentID, dispatch) => {
+export const getReply = async (mangaID, commentID, dispatch) => {
   dispatch(getChildrenStart());
   try {
-    const link = `comment?answer_id=${answerID}&parent_comment_id=${commentID}`;
+    const link = `comment?manga_id=${mangaID}&parent_comment_id=${commentID}`;
     const res = await axios.get(`${REACT_APP_BASE_URL}${link}`, {
       headers: {
         "Content-Type": "application/json",
@@ -934,32 +934,6 @@ export const createComment = async (
     dispatch(createCommentFailure());
   }
 };
-
-// export const updateAnswer = async (
-//   accessToken,
-//   answer,
-//   dispatch,
-//   navigate,
-//   axiosJWT
-// ) => {
-//   dispatch(updateAnswerStart());
-//   try {
-//     const res = await axiosJWT.post(
-//       `${REACT_APP_BASE_URL}answer/update`,
-//       answer,
-//       {
-//         headers: {
-//           "Content-Type": "application/json",
-//           authorization: `${accessToken}`,
-//         },
-//       }
-//     );
-//     dispatch(updateAnswerSuccess(res.data));
-//     navigate("/");
-//   } catch (error) {
-//     dispatch(updateAnswerFailure());
-//   }
-// };
 
 export const deleteComment = async (
   accessToken,

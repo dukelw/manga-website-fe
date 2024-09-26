@@ -1,6 +1,7 @@
 const routes = {
   updateSlider: "/update/slider/:id",
   addSlider: "/slider/add",
+  comment: "/comment/:slug",
   sliders: "/management/collection/:collection",
   chapter: "/manga/:slug/:chapter",
   manga: "/manga/:slug",

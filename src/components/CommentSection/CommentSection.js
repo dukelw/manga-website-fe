@@ -17,7 +17,7 @@ import io from "socket.io-client";
 import { createAxios } from "../../createAxios";
 import moment from "moment";
 
-const socket = io.connect("https://toeic-answersheet-be.onrender.com");
+const socket = io.connect(process.env.REACT_APP_SOCKET_SERVER);
 const timeFromNow = (createdAt) => {
   const now = moment();
   const created = moment(createdAt);
@@ -36,7 +36,7 @@ const CommentSection = ({
   comment,
   onReplySubmit,
   onDeleteComment,
-  answerID,
+  mangaID,
   onDeleteReply,
 }) => {
   const [replyVisible, setReplyVisible] = useState(false);
@@ -55,7 +55,7 @@ const CommentSection = ({
   };
 
   return (
-    <Box sx={{ mb: 2, pl: 2, borderLeft: "2px solid #ccc" }}>
+    <Box sx={{ mb: 2, pl: 2, borderLeft: "2px solid var(--white)" }}>
       <Box sx={{ display: "flex", alignItems: "center", mb: 1 }}>
         <img
           src={comment.comment_user.user_avatar}
@@ -70,11 +70,15 @@ const CommentSection = ({
         <Box>
           <Typography
             variant="subtitle2"
-            sx={{ fontWeight: "bold", fontSize: "14px", color: "#1976d2" }}
+            sx={{
+              fontWeight: "bold",
+              fontSize: "14px",
+              color: "var(--white)",
+            }}
           >
             {comment.comment_user.user_name}
           </Typography>
-          <Typography variant="caption" sx={{ color: "#888" }}>
+          <Typography variant="caption" sx={{ color: "var(--green)" }}>
             {timeFromNow(comment.createdAt)}
           </Typography>
         </Box>
@@ -83,13 +87,15 @@ const CommentSection = ({
       {comment.comment_parent_id && (
         <Typography
           variant="body2"
-          sx={{ fontStyle: "italic", color: "#888", mb: 1 }}
+          sx={{ fontStyle: "italic", color: "var(--white)", mb: 1 }}
         >
           Replied to {comment.comment_parent_user_name}
         </Typography>
       )}
 
-      <Typography>{comment.comment_content}</Typography>
+      <Typography sx={{ color: "var(--white)" }}>
+        {comment.comment_content}
+      </Typography>
 
       <Box
         sx={{
@@ -102,6 +108,9 @@ const CommentSection = ({
           variant="text"
           onClick={handleReplyClick}
           startIcon={<CommentIcon />}
+          sx={{
+            color: "var(--white)",
+          }}
         >
           Reply ({comment?.comment_replies?.length || 0})
         </Button>
@@ -122,13 +131,54 @@ const CommentSection = ({
                 variant="outlined"
                 value={replyText}
                 onChange={(e) => setReplyText(e.target.value)}
+                InputProps={{
+                  sx: {
+                    color: "var(--white)",
+                    "& .MuiOutlinedInput-notchedOutline": {
+                      borderColor: "var(--white)",
+                    },
+                    "&:hover .MuiOutlinedInput-notchedOutline": {
+                      borderColor: "var(--white)",
+                    },
+                    "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+                      borderColor: "var(--white)",
+                    },
+                    "&::placeholder": {
+                      color: "var(--white)",
+                    },
+                  },
+                }}
+                InputLabelProps={{
+                  sx: {
+                    color: "var(--white)",
+                    "&.Mui-focused": {
+                      color: "var(--white)",
+                    },
+                  },
+                }}
               />
-              <Button variant="contained" onClick={handleReplySubmit}>
+              <Button
+                variant="contained"
+                sx={{
+                  color: "var(--green)",
+                  fontSize: "12px",
+                  backgroundColor: "var(--black)",
+                  fontWeight: "600",
+                  fontFamily: "var(--font-family)",
+                  borderColor: "1px solid var(--green)",
+                  "&:hover": {
+                    color: "var(--green)",
+                    backgroundColor: "var(--black)",
+                    border: "1px solid var(--green)",
+                  },
+                }}
+                onClick={handleReplySubmit}
+              >
                 Reply
               </Button>
             </Box>
           ) : (
-            <h4>Please signin to reply</h4>
+            <h4 style={{ color: "var(--white)" }}>Please signin to reply</h4>
           )}
 
           <Box sx={{ mt: 2 }}>
@@ -136,7 +186,7 @@ const CommentSection = ({
               comment.comment_replies?.map((reply) => (
                 <Box
                   key={reply._id}
-                  sx={{ mb: 1, pl: 2, borderLeft: "1px solid #ddd" }}
+                  sx={{ mb: 1, pl: 2, borderLeft: "1px solid var(--white)" }}
                 >
                   <Box sx={{ display: "flex", alignItems: "center", mb: 1 }}>
                     <img
@@ -155,12 +205,15 @@ const CommentSection = ({
                         sx={{
                           fontWeight: "bold",
                           fontSize: "12px",
-                          color: "#1976d2",
+                          color: "var(--white)",
                         }}
                       >
                         {reply.comment_user.user_name}
                       </Typography>
-                      <Typography variant="caption" sx={{ color: "#888" }}>
+                      <Typography
+                        variant="caption"
+                        sx={{ color: "var(--green)" }}
+                      >
                         {timeFromNow(reply.createdAt)}
                       </Typography>
                     </Box>
@@ -173,8 +226,8 @@ const CommentSection = ({
                       </IconButton>
                     )}
                   </Box>
-                  <Typography>
-                    <span style={{ color: "#ff69b4" }}>
+                  <Typography sx={{ color: "var(--white)" }}>
+                    <span style={{ color: "var(--green)" }}>
                       @{comment.comment_user.user_name}{" "}
                     </span>
                     {reply.comment_content}
@@ -193,7 +246,7 @@ const CommentsList = ({
   onReplySubmit,
   onDeleteComment,
   onDeleteReply,
-  answerID,
+  mangaID,
 }) => {
   return commentsData.map((comment) => (
     <CommentSection
@@ -202,12 +255,12 @@ const CommentsList = ({
       onReplySubmit={onReplySubmit}
       onDeleteComment={onDeleteComment}
       onDeleteReply={onDeleteReply}
-      answerID={answerID}
+      mangaID={mangaID}
     />
   ));
 };
 
-function Comments({ answerID = "66c8c95eb4bc4dbeaa469f18" }) {
+function Comments({ mangaID = "quy-troll-manh-nhat-the-gioi" }) {
   const dispatch = useDispatch();
   const [commentsData, setCommentDatas] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -218,12 +271,12 @@ function Comments({ answerID = "66c8c95eb4bc4dbeaa469f18" }) {
   const axiosJWT = createAxios(currentUser);
 
   const fetchData = async () => {
-    const comments = await getComments(answerID, dispatch);
+    const comments = await getComments(mangaID, dispatch);
     setCommentDatas(comments.metadata);
   };
 
   useEffect(() => {
-    socket.emit("join_room", answerID);
+    socket.emit("join_room", mangaID);
 
     socket.on("receive_comment", (newComment) => {
       setCommentDatas((prevComments) => [...prevComments, newComment]);
@@ -245,13 +298,13 @@ function Comments({ answerID = "66c8c95eb4bc4dbeaa469f18" }) {
 
   useEffect(() => {
     fetchData();
-  }, [answerID]);
+  }, [mangaID]);
 
   const handleAddComment = async () => {
     if (!newComment.trim()) return;
 
     const commentData = {
-      answer_id: answerID,
+      manga_id: mangaID,
       user_id: userID,
       content: newComment,
       parent_comment_id: null,
@@ -262,7 +315,7 @@ function Comments({ answerID = "66c8c95eb4bc4dbeaa469f18" }) {
 
   const handleReplyComment = async (parentID, replyText) => {
     const commentData = {
-      answer_id: answerID,
+      manga_id: mangaID,
       user_id: userID,
       content: replyText,
       parent_comment_id: parentID,
@@ -274,7 +327,7 @@ function Comments({ answerID = "66c8c95eb4bc4dbeaa469f18" }) {
     async (commentID) => {
       setLoading(true); // Start loading
       const data = {
-        answer_id: answerID,
+        manga_id: mangaID,
         comment_id: commentID,
       };
       await deleteComment(accessToken, userID, data, dispatch, axiosJWT);
@@ -287,7 +340,7 @@ function Comments({ answerID = "66c8c95eb4bc4dbeaa469f18" }) {
   const handleDeleteReply = async (replyID) => {
     setLoading(true); // Start loading
     const data = {
-      answer_id: answerID,
+      manga_id: mangaID,
       comment_id: replyID,
     };
     await deleteComment(accessToken, userID, data, dispatch, axiosJWT);
@@ -305,7 +358,7 @@ function Comments({ answerID = "66c8c95eb4bc4dbeaa469f18" }) {
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
 
   return (
-    <Box sx={{ width: isMobile ? "88%" : "100%", mx: "auto", p: 2 }}>
+    <Box sx={{ width: isMobile ? "88%" : "100%", mx: "auto" }}>
       {loading && (
         <Box sx={{ display: "flex", justifyContent: "center", mb: 2 }}>
           <CircularProgress />
@@ -320,13 +373,57 @@ function Comments({ answerID = "66c8c95eb4bc4dbeaa469f18" }) {
             value={newComment}
             onChange={(e) => setNewComment(e.target.value)}
             onKeyPress={handleKeyPress}
+            InputProps={{
+              sx: {
+                color: "var(--white)",
+                "& .MuiOutlinedInput-notchedOutline": {
+                  borderColor: "var(--white)",
+                },
+                "&:hover .MuiOutlinedInput-notchedOutline": {
+                  borderColor: "var(--white)",
+                },
+                "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+                  borderColor: "var(--white)",
+                },
+                "&::placeholder": {
+                  color: "var(--white)",
+                },
+              },
+            }}
+            InputLabelProps={{
+              sx: {
+                color: "var(--white)",
+                "&.Mui-focused": {
+                  color: "var(--white)",
+                },
+              },
+            }}
           />
-          <Button variant="contained" sx={{ ml: 2 }} onClick={handleAddComment}>
+          <Button
+            variant="contained"
+            sx={{
+              marginLeft: 2,
+              color: "var(--green)",
+              fontSize: "12px",
+              backgroundColor: "var(--black)",
+              fontWeight: "600",
+              fontFamily: "var(--font-family)",
+              borderColor: "1px solid var(--green)",
+              "&:hover": {
+                color: "var(--green)",
+                backgroundColor: "var(--black)",
+                border: "1px solid var(--green)",
+              },
+            }}
+            onClick={handleAddComment}
+          >
             Post
           </Button>
         </Box>
       ) : (
-        <h2 style={{ textAlign: "center" }}>Please signin to comment</h2>
+        <h2 style={{ textAlign: "center", color: "var(--white)" }}>
+          Please signin to comment
+        </h2>
       )}
 
       <CommentsList
@@ -334,7 +431,7 @@ function Comments({ answerID = "66c8c95eb4bc4dbeaa469f18" }) {
         onReplySubmit={handleReplyComment}
         onDeleteComment={handleDeleteComment}
         onDeleteReply={handleDeleteReply}
-        answerID={answerID}
+        mangaID={mangaID}
       />
     </Box>
   );
