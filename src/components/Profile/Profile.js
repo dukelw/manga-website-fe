@@ -132,6 +132,7 @@ function Profile() {
         sx={{
           padding: 4,
           backgroundColor: "var(--black)",
+          boxShadow: "0 0 5px 1px var(--green)",
         }}
       >
         <Grid container spacing={2} alignItems="center" justifyContent="center">
@@ -148,7 +149,6 @@ function Profile() {
                 sx={{
                   marginTop: 2,
                   color: "var(--black)",
-                  padding: "4px 8px",
                   fontSize: "12px",
                   backgroundColor: "var(--green)",
                   fontWeight: "600",

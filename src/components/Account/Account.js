@@ -106,7 +106,18 @@ function Account() {
   return (
     <Container sx={{ width: isMobile ? "82vw" : "100%" }} maxWidth="sm">
       <h1>Change Password</h1>
-      <Paper elevation={3} sx={{ padding: 4 }}>
+      <p>
+        *Change password can not be done for Social account like Google or
+        Facebook
+      </p>
+      <Paper
+        elevation={3}
+        sx={{
+          padding: 4,
+          backgroundColor: "var(--black)",
+          boxShadow: "0 0 5px 1px var(--green)",
+        }}
+      >
         <form onSubmit={handleSubmit}>
           <Grid container spacing={2}>
             <Grid item xs={12}>
@@ -119,6 +130,29 @@ function Account() {
                 onChange={handleInputChange}
                 InputProps={{
                   readOnly: true,
+                  sx: {
+                    color: "var(--green)",
+                    "& .MuiOutlinedInput-notchedOutline": {
+                      borderColor: "var(--green)",
+                    },
+                    "&:hover .MuiOutlinedInput-notchedOutline": {
+                      borderColor: "var(--green)",
+                    },
+                    "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+                      borderColor: "var(--green)",
+                    },
+                    "&::placeholder": {
+                      color: "var(--green)",
+                    },
+                  },
+                }}
+                InputLabelProps={{
+                  sx: {
+                    color: "var(--green)",
+                    "&.Mui-focused": {
+                      color: "var(--green)",
+                    },
+                  },
                 }}
               />
             </Grid>
@@ -139,13 +173,36 @@ function Account() {
                         edge="end"
                       >
                         {showCurrentPassword ? (
-                          <VisibilityOff />
+                          <VisibilityOff sx={{ color: "var(--green)" }} />
                         ) : (
-                          <Visibility />
+                          <Visibility sx={{ color: "var(--green)" }} />
                         )}
                       </IconButton>
                     </InputAdornment>
                   ),
+                  sx: {
+                    color: "var(--green)",
+                    "& .MuiOutlinedInput-notchedOutline": {
+                      borderColor: "var(--green)",
+                    },
+                    "&:hover .MuiOutlinedInput-notchedOutline": {
+                      borderColor: "var(--green)",
+                    },
+                    "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+                      borderColor: "var(--green)",
+                    },
+                    "&::placeholder": {
+                      color: "var(--green)",
+                    },
+                  },
+                }}
+                InputLabelProps={{
+                  sx: {
+                    color: "var(--green)",
+                    "&.Mui-focused": {
+                      color: "var(--green)",
+                    },
+                  },
                 }}
                 error={!!error}
                 helperText={error}
@@ -167,10 +224,37 @@ function Account() {
                         onClick={handleClickShowNewPassword}
                         edge="end"
                       >
-                        {showNewPassword ? <VisibilityOff /> : <Visibility />}
+                        {showNewPassword ? (
+                          <VisibilityOff sx={{ color: "var(--green)" }} />
+                        ) : (
+                          <Visibility sx={{ color: "var(--green)" }} />
+                        )}
                       </IconButton>
                     </InputAdornment>
                   ),
+                  sx: {
+                    color: "var(--green)",
+                    "& .MuiOutlinedInput-notchedOutline": {
+                      borderColor: "var(--green)",
+                    },
+                    "&:hover .MuiOutlinedInput-notchedOutline": {
+                      borderColor: "var(--green)",
+                    },
+                    "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+                      borderColor: "var(--green)",
+                    },
+                    "&::placeholder": {
+                      color: "var(--green)",
+                    },
+                  },
+                }}
+                InputLabelProps={{
+                  sx: {
+                    color: "var(--green)",
+                    "&.Mui-focused": {
+                      color: "var(--green)",
+                    },
+                  },
                 }}
               />
             </Grid>
@@ -191,13 +275,36 @@ function Account() {
                         edge="end"
                       >
                         {showConfirmNewPassword ? (
-                          <VisibilityOff />
+                          <VisibilityOff sx={{ color: "var(--green)" }} />
                         ) : (
-                          <Visibility />
+                          <Visibility sx={{ color: "var(--green)" }} />
                         )}
                       </IconButton>
                     </InputAdornment>
                   ),
+                  sx: {
+                    color: "var(--green)",
+                    "& .MuiOutlinedInput-notchedOutline": {
+                      borderColor: "var(--green)",
+                    },
+                    "&:hover .MuiOutlinedInput-notchedOutline": {
+                      borderColor: "var(--green)",
+                    },
+                    "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+                      borderColor: "var(--green)",
+                    },
+                    "&::placeholder": {
+                      color: "var(--green)",
+                    },
+                  },
+                }}
+                InputLabelProps={{
+                  sx: {
+                    color: "var(--green)",
+                    "&.Mui-focused": {
+                      color: "var(--green)",
+                    },
+                  },
                 }}
                 error={!!error}
                 helperText={error}
@@ -209,6 +316,19 @@ function Account() {
                 variant="contained"
                 color="primary"
                 type="submit"
+                sx={{
+                  marginTop: 2,
+                  color: "var(--black)",
+                  backgroundColor: "var(--green)",
+                  fontWeight: "600",
+                  fontFamily: "var(--font-family)",
+                  borderColor: "1px solid var(--black)",
+                  "&:hover": {
+                    color: "var(--green)",
+                    backgroundColor: "var(--black)",
+                    border: "1px solid var(--green)",
+                  },
+                }}
               >
                 Change Password
               </Button>
