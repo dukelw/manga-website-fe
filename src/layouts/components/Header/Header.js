@@ -29,7 +29,7 @@ function Header() {
   const [anchorEl, setAnchorEl] = useState(null);
   const isMenuOpen = Boolean(anchorEl);
   const location = useLocation();
-  const currentUser = useSelector((state) => state?.user?.signin?.currentUser);
+  const currentUser = useSelector((state) => state?.user.signin.currentUser);
   const accessToken = currentUser?.metadata.tokens.accessToken;
   const userID = currentUser?.metadata.user._id;
   const axiosJWT = createAxios(currentUser);
@@ -147,7 +147,7 @@ function Header() {
                         className={cx("actions")}
                         onClick={handleMenuClose}
                       >
-                        History
+                        <Link to={"/history"}>History</Link>
                       </MenuItem>
                       <MenuItem
                         className={cx("actions")}

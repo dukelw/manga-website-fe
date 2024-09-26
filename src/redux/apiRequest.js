@@ -121,6 +121,14 @@ import {
   getMangaByGenreStart,
   getMangaByGenreSuccess,
 } from "./genreSlice";
+import {
+  createHistoryFailure,
+  createHistoryStart,
+  createHistorySuccess,
+  getFullHistoryFailure,
+  getFullHistoryStart,
+  getFullHistorySuccess,
+} from "./historySlice";
 
 const REACT_APP_BASE_URL = process.env.REACT_APP_BASE_URL;
 
@@ -183,6 +191,59 @@ export const getAllMangasByGenre = async (page, status = "", dispatch) => {
 };
 
 // End genre
+
+// Start history
+
+export const getHistory = async (userID, accessToken, dispatch, axiosJWT) => {
+  dispatch(getFullHistoryStart());
+  try {
+    const res = await axiosJWT.get(
+      `${REACT_APP_BASE_URL}history/find-all/${userID}`,
+      {
+        headers: {
+          "Content-Type": "application/json",
+          authorization: `${accessToken}`,
+        },
+      }
+    );
+    dispatch(getFullHistorySuccess(res.data));
+    return res.data;
+  } catch (error) {
+    console.error("Error fetching history:", error);
+    dispatch(getFullHistoryFailure());
+  }
+};
+
+export const createHistory = async (
+  userID,
+  mangaID,
+  accessToken,
+  dispatch,
+  axiosJWT
+) => {
+  dispatch(createHistoryStart());
+  try {
+    const res = await axiosJWT.post(
+      `${REACT_APP_BASE_URL}history`,
+      {
+        userID,
+        mangaID,
+      },
+      {
+        headers: {
+          "Content-Type": "application/json",
+          authorization: `${accessToken}`,
+        },
+      }
+    );
+    dispatch(createHistorySuccess(res.data));
+  } catch (error) {
+    dispatch(createHistoryFailure());
+    return false;
+  }
+};
+
+// End history
 
 // Start manga
 

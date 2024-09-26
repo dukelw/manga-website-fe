@@ -2,6 +2,7 @@ import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import userReducer from "./userSlice";
 import mangaReducer from "./mangaSlice";
 import genreReducer from "./genreSlice";
+import historyReducer from "./historySlice";
 import chapterReducer from "./chapterSlice";
 import uploadReducer from "./uploadSlice";
 import sliderReducer from "./sliderSlice";
@@ -30,6 +31,7 @@ const rootReducer = combineReducers({
   manga: mangaReducer,
   genre: genreReducer,
   chapter: chapterReducer,
+  history: historyReducer,
   user: userReducer,
   upload: uploadReducer,
   slider: sliderReducer,

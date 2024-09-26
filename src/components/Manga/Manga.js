@@ -16,9 +16,14 @@ import VisibilityIcon from "@mui/icons-material/Visibility";
 import ThumbUpIcon from "@mui/icons-material/ThumbUp";
 import PeopleIcon from "@mui/icons-material/People";
 import FavoriteIcon from "@mui/icons-material/Favorite";
-import { getManga } from "../../redux/apiRequest";
+import { createAxios } from "../../createAxios";
+import { createHistory, getManga } from "../../redux/apiRequest";
 
 function Manga() {
+  const currentUser = useSelector((state) => state.user.signin.currentUser);
+  const accessToken = currentUser?.metadata.tokens.accessToken;
+  const userID = currentUser?.metadata.user._id;
+  const axiosJWT = createAxios(currentUser);
   const { slug } = useParams();
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -32,6 +37,10 @@ function Manga() {
       setLoading(false);
     };
     fetchData();
+
+    if (currentUser) {
+      createHistory(userID, slug, accessToken, dispatch, axiosJWT);
+    }
   }, [slug]);
 
   const currentManga = useSelector((state) => state?.manga.get.manga);

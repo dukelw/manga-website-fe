@@ -6,6 +6,7 @@ const routes = {
   manga: "/manga/:slug",
   search: "/search/:keySearch",
   signup: "/signup",
+  history: "/history",
   popular: "/popular",
   new: "/new",
   specificGenre: "/genres/:genreID",
