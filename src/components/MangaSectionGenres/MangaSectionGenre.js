@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import {
   Box,
@@ -7,38 +7,41 @@ import {
   CardMedia,
   Grid,
   Typography,
-  CircularProgress,
   Pagination,
   Button,
   Skeleton,
 } from "@mui/material";
 import { MenuBook, Visibility } from "@mui/icons-material"; // Import icons
-import styles from "./MangaSectionAdvance.module.scss";
+import styles from "./MangaSectionGenre.module.scss";
 import classNames from "classnames/bind";
-import { getManga } from "../../redux/apiRequest";
+import { getAllGenres, getManga } from "../../redux/apiRequest";
 
 const cx = classNames.bind(styles);
 
-const MangaSectionAdvance = ({ sectionName, fetchMangaFunction }) => {
+const MangaSectionAdvance = ({ sectionName = "", fetchMangaFunction }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [loading, setLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
   const [status, setStatus] = useState("all");
-  const [type, setType] = useState("");
   const [mangas, setMangas] = useState([]);
   const [totalPages, setTotalPages] = useState(0);
+  const [genres, setGenres] = useState([]);
+  const [genre, setGenre] = useState({ id: "all" });
 
   useEffect(() => {
     const fetchData = async () => {
       setLoading(true);
       try {
         const res = await fetchMangaFunction(
-          type,
+          genre.id,
           currentPage,
           status,
           dispatch
         );
+
+        const response = await getAllGenres(dispatch);
+        setGenres(response);
         setMangas(res.comics);
         setTotalPages(res.total_pages);
       } catch (error) {
@@ -49,15 +52,16 @@ const MangaSectionAdvance = ({ sectionName, fetchMangaFunction }) => {
     };
 
     fetchData();
-  }, [type, status, currentPage, dispatch]); // Re-fetch data when type, status, or currentPage changes
+  }, [status, currentPage, genre, dispatch]);
+  // Re-fetch data when type, status, or currentPage changes
 
   const handlePageChange = (event, value) => {
     setCurrentPage(value);
   };
 
-  const handleTypeChange = (newType) => {
-    setType(newType);
-    setCurrentPage(1); // Reset to the first page when type changes
+  const handleGenreChange = (newGenre) => {
+    setGenre(newGenre);
+    setCurrentPage(1);
   };
 
   const handleStatusChange = (newStatus) => {
@@ -104,159 +108,32 @@ const MangaSectionAdvance = ({ sectionName, fetchMangaFunction }) => {
       {/* Type buttons */}
       <Box mb={2}>
         <Grid container spacing={2}>
-          <Grid item>
-            <Button
-              variant={type === "" ? "contained" : "outlined"}
-              onClick={() => handleTypeChange("")}
-              sx={{
-                backgroundColor: type === "" ? "var(--green)" : "var(--black)",
-                color: type === "" ? "var(--black)" : "var(--green)",
-                fontWeight: "600",
-                maxWidth: "200px",
-                borderColor: "var(--green)",
-                fontFamily: "var(--font-family)",
-                "&:hover": {
-                  color: "var(--black)",
-                  backgroundColor: "var(--green)",
-                  border: "1px solid var(--green)",
-                },
-              }}
-            >
-              All
-            </Button>
-          </Grid>
-          <Grid item>
-            <Button
-              variant={type === "/daily" ? "contained" : "outlined"}
-              sx={{
-                backgroundColor:
-                  type === "/daily" ? "var(--green)" : "var(--black)",
-                color: type === "/daily" ? "var(--black)" : "var(--green)",
-                fontWeight: "600",
-                maxWidth: "200px",
-                borderColor: "var(--green)",
-                fontFamily: "var(--font-family)",
-                "&:hover": {
-                  color: "var(--black)",
-                  backgroundColor: "var(--green)",
-                  border: "1px solid var(--green)",
-                },
-              }}
-              onClick={() => handleTypeChange("/daily")}
-            >
-              Daily
-            </Button>
-          </Grid>
-          <Grid item>
-            <Button
-              variant={type === "/monthly" ? "contained" : "outlined"}
-              sx={{
-                backgroundColor:
-                  type === "/monthly" ? "var(--green)" : "var(--black)",
-                color: type === "/monthly" ? "var(--black)" : "var(--green)",
-                fontWeight: "600",
-                maxWidth: "200px",
-                borderColor: "var(--green)",
-                fontFamily: "var(--font-family)",
-                "&:hover": {
-                  color: "var(--black)",
-                  backgroundColor: "var(--green)",
-                  border: "1px solid var(--green)",
-                },
-              }}
-              onClick={() => handleTypeChange("/monthly")}
-            >
-              Monthly
-            </Button>
-          </Grid>
-          <Grid item>
-            <Button
-              variant={type === "/weekly" ? "contained" : "outlined"}
-              sx={{
-                backgroundColor:
-                  type === "/weekly" ? "var(--green)" : "var(--black)",
-                color: type === "/weekly" ? "var(--black)" : "var(--green)",
-                fontWeight: "600",
-                maxWidth: "200px",
-                borderColor: "var(--green)",
-                fontFamily: "var(--font-family)",
-                "&:hover": {
-                  color: "var(--black)",
-                  backgroundColor: "var(--green)",
-                  border: "1px solid var(--green)",
-                },
-              }}
-              onClick={() => handleTypeChange("/weekly")}
-            >
-              Weekly
-            </Button>
-          </Grid>
-          <Grid item>
-            <Button
-              variant={type === "/chapter" ? "contained" : "outlined"}
-              sx={{
-                backgroundColor:
-                  type === "/chapter" ? "var(--green)" : "var(--black)",
-                color: type === "/chapter" ? "var(--black)" : "var(--green)",
-                fontWeight: "600",
-                maxWidth: "200px",
-                borderColor: "var(--green)",
-                fontFamily: "var(--font-family)",
-                "&:hover": {
-                  color: "var(--black)",
-                  backgroundColor: "var(--green)",
-                  border: "1px solid var(--green)",
-                },
-              }}
-              onClick={() => handleTypeChange("/chapter")}
-            >
-              Chapter
-            </Button>
-          </Grid>
-          <Grid item>
-            <Button
-              variant={type === "/follow" ? "contained" : "outlined"}
-              sx={{
-                backgroundColor:
-                  type === "/follow" ? "var(--green)" : "var(--black)",
-                color: type === "/follow" ? "var(--black)" : "var(--green)",
-                fontWeight: "600",
-                maxWidth: "200px",
-                borderColor: "var(--green)",
-                fontFamily: "var(--font-family)",
-                "&:hover": {
-                  color: "var(--black)",
-                  backgroundColor: "var(--green)",
-                  border: "1px solid var(--green)",
-                },
-              }}
-              onClick={() => handleTypeChange("/follow")}
-            >
-              Follow
-            </Button>
-          </Grid>
-          <Grid item>
-            <Button
-              variant={type === "/comment" ? "contained" : "outlined"}
-              sx={{
-                backgroundColor:
-                  type === "/comment" ? "var(--green)" : "var(--black)",
-                color: type === "/comment" ? "var(--black)" : "var(--green)",
-                fontWeight: "600",
-                maxWidth: "200px",
-                borderColor: "var(--green)",
-                fontFamily: "var(--font-family)",
-                "&:hover": {
-                  color: "var(--black)",
-                  backgroundColor: "var(--green)",
-                  border: "1px solid var(--green)",
-                },
-              }}
-              onClick={() => handleTypeChange("/comment")}
-            >
-              Comment
-            </Button>
-          </Grid>
+          {genres?.map((g, index) => {
+            return (
+              <Grid key={index} item>
+                <Button
+                  variant={genre.id === g.id ? "contained" : "outlined"}
+                  onClick={() => handleGenreChange(g)}
+                  sx={{
+                    backgroundColor:
+                      genre.id === g.id ? "var(--green)" : "var(--black)",
+                    color: genre.id === g.id ? "var(--black)" : "var(--green)",
+                    fontWeight: "600",
+                    maxWidth: "200px",
+                    borderColor: "var(--green)",
+                    fontFamily: "var(--font-family)",
+                    "&:hover": {
+                      color: "var(--black)",
+                      backgroundColor: "var(--green)",
+                      border: "1px solid var(--green)",
+                    },
+                  }}
+                >
+                  {g.name}
+                </Button>
+              </Grid>
+            );
+          })}
         </Grid>
       </Box>
 
@@ -341,8 +218,9 @@ const MangaSectionAdvance = ({ sectionName, fetchMangaFunction }) => {
           marginBottom: "12px",
         }}
       >
-        {sectionName}
+        {("Manga genre: ", genre.name)}
       </Typography>
+      <p>{genre.description}</p>
 
       <Grid container spacing={2}>
         {mangas.map((manga) => (

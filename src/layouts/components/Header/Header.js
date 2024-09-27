@@ -8,6 +8,9 @@ import {
   Menu,
   MenuItem,
   Avatar,
+  Badge,
+  ListItemAvatar,
+  ListItemText,
 } from "@mui/material";
 import { Notifications } from "@mui/icons-material";
 import { Link, useLocation, useNavigate } from "react-router-dom";
@@ -18,16 +21,20 @@ import "tippy.js/dist/tippy.css";
 import { Wrapper as PopperWrapper } from "../../../components/Popper";
 import { createAxios } from "../../../createAxios";
 import styles from "./Header.module.scss";
+import io from "socket.io-client";
 import classNames from "classnames/bind";
-import { logout } from "../../../redux/apiRequest";
+import { findUser, getNotifications, logout } from "../../../redux/apiRequest";
 
 const cx = classNames.bind(styles);
+const socket = io.connect(process.env.REACT_APP_SOCKET_SERVER);
 
 function Header() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [anchorEl, setAnchorEl] = useState(null);
+  const [anchorElNoti, setAnchorElNoti] = useState(null);
   const isMenuOpen = Boolean(anchorEl);
+  const isNotiOpen = Boolean(anchorElNoti);
   const location = useLocation();
   const currentUser = useSelector((state) => state?.user.signin.currentUser);
   const accessToken = currentUser?.metadata.tokens.accessToken;
@@ -46,13 +53,76 @@ function Header() {
     setAnchorEl(null);
   };
 
-  const menuId = "account-menu";
+  const handleNotiOpen = (event) => {
+    setAnchorElNoti(event.currentTarget);
+  };
+
+  const handleNotiClose = () => {
+    setAnchorElNoti(null);
+  };
 
   const linkStyle = (path) => ({
     textDecoration: "none",
     color: location.pathname === path ? "var(--yellow)" : "inherit",
     fontWeight: location.pathname === path ? "bold" : "normal",
   });
+
+  const [notifications, setNotifications] = useState([]);
+  const [haveNotRead, setHaveNotRead] = useState(0); // Số lượng thông báo chưa đọc
+
+  const fetchData = async () => {
+    try {
+      const notiData = await getNotifications(userID, dispatch);
+      let count = 0;
+
+      const userPromises = notiData.map(async (notification) => {
+        if (!notification.isRead) {
+          count += 1;
+        }
+        const senderData = await findUser(
+          notification.notification_sender_id,
+          dispatch
+        );
+        const receiverData = await findUser(
+          notification.notification_receiver_id,
+          dispatch
+        );
+
+        return {
+          ...notification,
+          senderData: senderData.metadata.user,
+          receiverData: receiverData.metadata.user,
+        };
+      });
+
+      const notificationsWithUserData = await Promise.all(userPromises);
+      setNotifications(notificationsWithUserData);
+      setHaveNotRead(count);
+      console.log(notificationsWithUserData);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  };
+
+  const handleNotificationClick = (mangaId) => {
+    const manga = mangaId.split("_")[0];
+    const chap = mangaId.split("_")[1];
+    navigate(`/manga/${manga}/${chap}`);
+    handleNotiClose();
+  };
+
+  useEffect(() => {
+    fetchData();
+    socket.emit("join_room", userID);
+
+    socket.on("receive_notification", (data) => {
+      fetchData();
+    });
+
+    return () => {
+      socket.off("receive_notification");
+    };
+  }, [socket]);
 
   return (
     <AppBar
@@ -125,9 +195,66 @@ function Header() {
 
         {/* Notifications + Avatar */}
         <Box display="flex" alignItems="center">
-          <IconButton color="inherit">
-            <Notifications />
+          <IconButton color="inherit" onClick={handleNotiOpen}>
+            <Badge badgeContent={haveNotRead} color="error">
+              <Notifications />
+            </Badge>
           </IconButton>
+          <Menu
+            anchorEl={anchorElNoti}
+            anchorOrigin={{
+              vertical: "bottom",
+              horizontal: "right",
+            }}
+            transformOrigin={{
+              vertical: "top",
+              horizontal: "right",
+            }}
+            open={isNotiOpen}
+            onClose={handleNotiClose}
+            PaperProps={{
+              style: {
+                maxHeight: 400,
+                width: "fit-content",
+                backgroundColor: "var(--grey)",
+              },
+            }}
+          >
+            {notifications.length === 0 ? (
+              <MenuItem>No notifications</MenuItem>
+            ) : (
+              notifications.map((notification) => (
+                <MenuItem
+                  key={notification._id}
+                  onClick={() =>
+                    handleNotificationClick(notification.notification_manga_id)
+                  }
+                >
+                  <ListItemAvatar>
+                    <Avatar
+                      src={
+                        notification.senderData.avatar || "/default-avatar.png"
+                      }
+                    />
+                  </ListItemAvatar>
+                  <ListItemText
+                    primary={`${notification.senderData.name} has commented`}
+                    secondary={notification.notification_content}
+                    primaryTypographyProps={{
+                      sx: { color: "var(--green)" },
+                    }}
+                    secondaryTypographyProps={{
+                      sx: {
+                        color: notification.isRead
+                          ? "var(--white)"
+                          : "var(--green)",
+                      },
+                    }}
+                  />
+                </MenuItem>
+              ))
+            )}
+          </Menu>
           <HeadlessTippy
             interactive
             visible={isMenuOpen}
@@ -135,7 +262,7 @@ function Header() {
             render={(attrs) => (
               <div tabIndex={-1} {...attrs}>
                 <PopperWrapper className={cx("actions-container")}>
-                  {currentUser ? (
+                  {accessToken ? (
                     <>
                       <MenuItem
                         className={cx("actions")}

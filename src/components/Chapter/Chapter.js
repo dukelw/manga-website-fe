@@ -7,14 +7,19 @@ import {
   MenuItem,
   ListItemIcon,
   Skeleton,
+  Badge,
 } from "@mui/material";
-import { useDispatch } from "react-redux";
-import { getChapter } from "../../redux/apiRequest";
+import { useDispatch, useSelector } from "react-redux";
+import { getChapter, markRead } from "../../redux/apiRequest";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import CommentSection from "../CommentSection";
 import { Drawer, IconButton } from "@mui/material";
 import CommentIcon from "@mui/icons-material/Comment";
+import { createAxios } from "../../createAxios";
+import io from "socket.io-client";
+
+const socket = io.connect(process.env.REACT_APP_SOCKET_SERVER);
 
 function Chapter() {
   const dispatch = useDispatch();
@@ -23,7 +28,12 @@ function Chapter() {
   const [currentChapter, setCurrentChapter] = useState(null);
   const [loading, setLoading] = useState(true);
   const [anchorEl, setAnchorEl] = useState(null);
+  const [commentCount, setCommentCount] = useState(0);
   const [openCommentDrawer, setOpenCommentDrawer] = useState(false);
+  const currentUser = useSelector((state) => state.user.signin.currentUser);
+  const accessToken = currentUser?.metadata.tokens.accessToken;
+  const userID = currentUser?.metadata.user._id;
+  const axiosJWT = createAxios(currentUser);
 
   const toggleCommentDrawer = () => {
     setOpenCommentDrawer((prev) => !prev);
@@ -32,13 +42,28 @@ function Chapter() {
   useEffect(() => {
     const fetchData = async () => {
       setLoading(true);
+      if (currentUser) {
+        const notification = {
+          mangaID: slug + "_" + chapter,
+          userID,
+        };
+        await markRead(accessToken, notification, dispatch, axiosJWT);
+        await socket.emit("update_notification", { user_id: userID });
+      }
       const res = await getChapter(slug, chapter.split("-")[1], dispatch);
-      console.log("Chapter", res);
       setCurrentChapter(res);
       setLoading(false);
     };
     fetchData();
   }, [slug, chapter, dispatch]);
+
+  useEffect(() => {
+    socket.emit("join_room", slug + "_" + chapter);
+    socket.emit("get_comment", slug + "_" + chapter);
+    socket.on("change_comment", async (data) => {
+      setCommentCount(data);
+    });
+  }, [socket]);
 
   const skeletonItems = Array.from({ length: 5 }).map((_, index) => (
     <Skeleton
@@ -256,7 +281,9 @@ function Chapter() {
           },
         }}
       >
-        <CommentIcon />
+        <Badge badgeContent={commentCount} color="error">
+          <CommentIcon />
+        </Badge>
       </IconButton>
       <Drawer
         anchor="left"
@@ -270,7 +297,7 @@ function Chapter() {
           },
         }}
       >
-        <CommentSection mangaID={slug + chapter} />
+        <CommentSection mangaID={slug + "_" + chapter} />
       </Drawer>
     </Box>
   );

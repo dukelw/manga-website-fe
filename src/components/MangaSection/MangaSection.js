@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import {
   Box,
@@ -7,7 +7,6 @@ import {
   CardMedia,
   Grid,
   Typography,
-  CircularProgress,
   Pagination,
   Skeleton,
 } from "@mui/material";
@@ -15,6 +14,7 @@ import { MenuBook, Visibility } from "@mui/icons-material"; // Import icons
 import styles from "./MangaSection.module.scss";
 import classNames from "classnames/bind";
 import { getManga } from "../../redux/apiRequest";
+import CONSTANTS from "../../constants";
 
 const cx = classNames.bind(styles);
 
@@ -25,13 +25,17 @@ const MangaSection = ({ sectionName, fetchMangaFunction }) => {
   const [currentPage, setCurrentPage] = useState(1);
   const [mangas, setMangas] = useState([]);
   const [totalPages, setTotalPages] = useState(0);
+  const { fallbackManga } = CONSTANTS;
 
   useEffect(() => {
     const fetchData = async () => {
       setLoading(true);
       try {
-        const res = await fetchMangaFunction(currentPage, "", dispatch);
+        let res = await fetchMangaFunction(currentPage, "", dispatch);
         console.log(res);
+        if (!res) {
+          res = fallbackManga;
+        }
         setMangas(res.comics);
         setTotalPages(res.total_pages);
       } catch (error) {
@@ -64,16 +68,16 @@ const MangaSection = ({ sectionName, fetchMangaFunction }) => {
                 variant="rectangular"
                 width="100%"
                 height={250}
-                sx={{ backgroundColor: "var(--green)" }} 
+                sx={{ backgroundColor: "var(--green)" }}
               />
               <Skeleton
                 variant="text"
-                sx={{ backgroundColor: "var(--green)", mt: 1 }} 
+                sx={{ backgroundColor: "var(--green)", mt: 1 }}
               />
               <Skeleton
                 variant="text"
                 width="60%"
-                sx={{ backgroundColor: "var(--green)" }} 
+                sx={{ backgroundColor: "var(--green)" }}
               />
             </Grid>
           ))}
@@ -98,7 +102,7 @@ const MangaSection = ({ sectionName, fetchMangaFunction }) => {
       </Typography>
 
       <Grid container spacing={2}>
-        {mangas.map((manga) => (
+        {mangas?.map((manga) => (
           <Grid item xs={12} sm={6} md={3} lg={1.5} key={manga.id}>
             <Card
               onClick={async () => {
@@ -132,7 +136,9 @@ const MangaSection = ({ sectionName, fetchMangaFunction }) => {
                   <Box className={cx("info-item")}>
                     <MenuBook sx={{ fontSize: "16px", marginRight: "4px" }} />
                     <Typography sx={{ fontSize: "14px" }}>
-                      {manga.last_chapters[0].name}
+                      {manga.last_chapters
+                        ? manga?.last_chapters[0]?.name
+                        : manga?.lastest_chapters[0].name}
                     </Typography>
                   </Box>
                   <Box className={cx("info-item")}>

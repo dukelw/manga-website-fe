@@ -216,7 +216,9 @@ const SpecificGenre = () => {
                   <Box className={cx("info-item")}>
                     <MenuBook sx={{ fontSize: "16px", marginRight: "4px" }} />
                     <Typography sx={{ fontSize: "14px" }}>
-                      {manga.last_chapters[0]?.name}
+                      {manga.last_chapters
+                        ? manga.last_chapters[0]?.name
+                        : manga.lastest_chapters[0]?.name}
                     </Typography>
                   </Box>
                   <Box className={cx("info-item")}>
