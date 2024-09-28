@@ -1,70 +1,61 @@
-# Getting Started with Create React App
+# Manga Website
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+![By Lewis](https://www.facebook.com/daydreamer.so/) 
+![Demo](lewis-manga.vercel.app) 
 
-## Available Scripts
+## Project Description
 
-In the project directory, you can run:
+Manga Website is a web application that allows users to search, read, and track their favorite manga series. The application is built with React and Redux for the frontend and Node.js with Express for the backend. With friendly user interface and non-ad-being, this website will serve users at its best.
 
-### `npm start`
+## Features
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- **Manga Search**: Users can search for manga series by title, genre, and author.
+- **Recently Updated Manga List**: Displays a list of recently updated manga series.
+- **Manga Details**: Provides detailed information about each manga series, including descriptions, genres, and chapters.
+- **Read Manga**: Users can read manga online with a user-friendly interface.
+- **Track Manga**: Users can track their favorite manga series and receive notifications when there are new updates.
+- **Social Authentication**: Users can use their Google or Facebook account to login.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Technologies Used
 
-### `npm test`
+- **Frontend**: 
+  - React
+  - Redux
+  - Material-UI
+  - Axios
+  - Socket.IO
+  - React Bootstrap 
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- **Backend**:
+  - Node.js
+  - Express
+  - MongoDB
+  - AWS: S3
+ 
+## Demo
 
-### `npm run build`
+- **PC**:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+![Homepage](https://drive.google.com/file/d/1SapJYpREkxLohqGzRPZmwUMWq35ZyFtu/view?usp=sharing)
+![Search](https://drive.google.com/file/d/1HIQR0CZZvZMpL9Bi39t2a4NvVBKh-X1R/view?usp=sharing)
+![Manga](https://drive.google.com/file/d/1rj5auKIm31l_9G8_CdmapFDsnQPDMV60/view?usp=sharing)
+![Chapter](https://drive.google.com/file/d/18L6COvlcpMp2K86M_F1AJ4qs5nlv_a0_/view?usp=sharing)
+![Comment](https://drive.google.com/file/d/1q6Pcjf5Fakqqa6WDqYbbq-Tt6fHNKdup/view?usp=sharing)
+![Genres](https://drive.google.com/file/d/1N58hsMq138btDYGwBGkKXqC7bGK0b8WI/view?usp=sharing)
+![History](https://drive.google.com/file/d/1SapJYpREkxLohqGzRPZmwUMWq35ZyFtu/view?usp=sharing)
+![Favourite](https://drive.google.com/file/d/1t-vceJ2g91jkvj6o8n2FPn9tLhlw-uk-/view?usp=sharing)
+![Signin](https://drive.google.com/file/d/1kQEH_EE_e1UPHsgCEMw_2vzkp5V8LKmM/view?usp=sharing)
+![Signup](https://drive.google.com/file/d/1sAOHPaPsO6Fcf8cY5tho2nel1uN3wDKy/view?usp=sharing)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- **Mobile**:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+![History](https://drive.google.com/file/d/1GAWHwT7FIV1_RsZ0e8lFd46cvwIRIvwI/view?usp=sharing)
+![Manga](https://drive.google.com/file/d/1NKwwXHJk1yxPKEXf395RAquptUJbeVof/view?usp=sharing)
 
-### `npm run eject`
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## Note
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- This is just some pages in the website, go to ![the website](https://www.facebook.com/daydreamer.so/) to have the best experience.
+- Some time API is unavailable, when you see the page without any mangas or when you click to a manga but seeing another one.
+- Thank you for reading.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
