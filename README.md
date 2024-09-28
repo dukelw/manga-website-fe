@@ -1,4 +1,6 @@
-![search-result](https://github.com/user-attachments/assets/86734252-dd45-45ff-aadd-a666961dc406)# Manga Website
+![main-and-header](https://github.com/user-attachments/assets/49a136c1-6d5e-42a6-80c2-9e529952b15e)
+
+# Manga Website
 
 - By Lewis
 - Demo: lewis-manga.vercel.app
