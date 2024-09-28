@@ -58,7 +58,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
-  "proxy": "https://comics-api.vercel.appp",
+  "proxy": "https://comics-api.vercel.app/v2/",
   "eslintConfig": {
     "extends": [
       "react-app",
