@@ -9,7 +9,11 @@ const cx = classNames.bind(styles);
 
 const New = () => {
   return (
-    <Box className={cx("home-container")} padding={6} position="relative">
+    <Box
+      className={cx("home-container")}
+      sx={{ padding: "10px" }}
+      position="relative"
+    >
       <MangaSection
         sectionName={"New Manga"}
         fetchMangaFunction={getAllNewMangas}

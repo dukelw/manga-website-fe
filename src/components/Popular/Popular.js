@@ -8,8 +8,13 @@ import MangaSectionAdvance from "../MangaSectionAdvance";
 const cx = classNames.bind(styles);
 
 const Popular = () => {
+
   return (
-    <Box className={cx("home-container")} padding={6} position="relative">
+    <Box
+      className={cx("home-container")}
+      sx={{ padding: "10px" }}
+      position="relative"
+    >
       <MangaSectionAdvance
         sectionName={"Top Mangas"}
         fetchMangaFunction={getAllMangas}

@@ -9,12 +9,14 @@ import {
   Typography,
   Pagination,
   Skeleton,
+  createTheme,
+  useMediaQuery,
 } from "@mui/material";
 import { MenuBook, Visibility } from "@mui/icons-material"; // Import icons
 import styles from "./MangaSection.module.scss";
 import classNames from "classnames/bind";
 import { getManga } from "../../redux/apiRequest";
-import CONSTANTS from "../../constants";
+import CONSTANT from "../../constants";
 
 const cx = classNames.bind(styles);
 
@@ -25,7 +27,7 @@ const MangaSection = ({ sectionName, fetchMangaFunction }) => {
   const [currentPage, setCurrentPage] = useState(1);
   const [mangas, setMangas] = useState([]);
   const [totalPages, setTotalPages] = useState(0);
-  const { fallbackManga } = CONSTANTS;
+  const { fallbackManga, fallbackImage } = CONSTANT;
 
   useEffect(() => {
     const fetchData = async () => {
@@ -52,6 +54,10 @@ const MangaSection = ({ sectionName, fetchMangaFunction }) => {
     setCurrentPage(value);
   };
 
+  const theme = createTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
+  const isTablet = useMediaQuery(theme.breakpoints.between("sm", "lg"));
+
   if (loading) {
     return (
       <Box
@@ -59,11 +65,12 @@ const MangaSection = ({ sectionName, fetchMangaFunction }) => {
         justifyContent="center"
         alignItems="center"
         height="100vh"
+        marginTop={isMobile || isTablet ? 28 : 0}
       >
         <Grid container spacing={2}>
           {/* Skeleton for Manga Card Thumbnails */}
           {Array.from(new Array(8)).map((_, index) => (
-            <Grid item xs={12} sm={6} md={3} lg={1.5} key={index}>
+            <Grid item xs={6} sm={6} md={3} lg={1.5} key={index}>
               <Skeleton
                 variant="rectangular"
                 width="100%"
@@ -87,7 +94,11 @@ const MangaSection = ({ sectionName, fetchMangaFunction }) => {
   }
 
   return (
-    <Box className={cx("home-container")} padding={6} position="relative">
+    <Box
+      className={cx("home-container")}
+      padding={isMobile || isTablet ? 2 : 6}
+      position="relative"
+    >
       <Typography
         variant="h5"
         component="h5"
@@ -102,8 +113,8 @@ const MangaSection = ({ sectionName, fetchMangaFunction }) => {
       </Typography>
 
       <Grid container spacing={2}>
-        {mangas?.map((manga) => (
-          <Grid item xs={12} sm={6} md={3} lg={1.5} key={manga.id}>
+        {mangas?.map((manga, index) => (
+          <Grid item xs={6} sm={6} md={3} lg={1.5} key={index}>
             <Card
               onClick={async () => {
                 await getManga(manga.id, dispatch);
@@ -126,8 +137,7 @@ const MangaSection = ({ sectionName, fetchMangaFunction }) => {
                 className={cx("card-media")}
                 onError={(e) => {
                   e.target.onerror = null;
-                  e.target.src =
-                    "https://itphutran.com/wp-content/uploads/2017/05/H%C6%B0%E1%BB%9Bng-d%E1%BA%ABn-x%E1%BB%AD-l%C3%BD-l%E1%BB%97i-404-Page-Not-Found-trong-Java-v%C3%A0-PHP.jpg";
+                  e.target.src = fallbackImage;
                 }}
               />
               <Box className={cx("overlay")}>

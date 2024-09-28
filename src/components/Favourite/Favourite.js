@@ -4,10 +4,12 @@ import {
   Box,
   Card,
   CardMedia,
+  createTheme,
   Grid,
   Pagination,
   Skeleton,
   Typography,
+  useMediaQuery,
 } from "@mui/material";
 import styles from "./Favourite.module.scss";
 import classNames from "classnames/bind";
@@ -15,6 +17,7 @@ import { createAxios } from "../../createAxios";
 import { useDispatch, useSelector } from "react-redux";
 import { MenuBook, PersonAdd, Visibility } from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
+import CONSTANT from "../../constants";
 
 const cx = classNames.bind(styles);
 
@@ -25,6 +28,10 @@ const Favourite = () => {
   const axiosJWT = createAxios(currentUser);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const theme = createTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
+  const isTablet = useMediaQuery(theme.breakpoints.between("sm", "lg"));
+  const { fallbackImage } = CONSTANT;
 
   const [mangas, setMangas] = useState([]);
   const [totalPages, setTotalPages] = useState(0);
@@ -67,11 +74,12 @@ const Favourite = () => {
         justifyContent="center"
         alignItems="center"
         height="100vh"
+        marginTop={isMobile || isTablet ? 28 : 0}
       >
         <Grid container spacing={2}>
           {/* Skeleton for Manga Card Thumbnails */}
           {Array.from(new Array(8)).map((_, index) => (
-            <Grid item xs={12} sm={6} md={3} lg={1.5} key={index}>
+            <Grid item xs={6} sm={6} md={3} lg={1.5} key={index}>
               <Skeleton
                 variant="rectangular"
                 width="100%"
@@ -95,15 +103,19 @@ const Favourite = () => {
   }
 
   return (
-    <Box className={cx("home-container")} padding={6} position="relative">
+    <Box
+      className={cx("home-container")}
+      sx={{ padding: isMobile || isTablet ? "20px" : "60px" }}
+      position="relative"
+    >
       <h2>Favourite</h2>
       <Grid container spacing={2}>
-        {mangas?.map((manga) => (
-          <Grid item xs={12} sm={6} md={3} lg={1.714} key={manga.id}>
+        {mangas?.map((manga, index) => (
+          <Grid item xs={6} sm={6} md={3} lg={1.714} key={index}>
             <Card
               onClick={async () => {
-                await getManga(manga.id, dispatch);
-                navigate(`/manga/${manga.id}`);
+                await getManga(manga?.id, dispatch);
+                navigate(`/manga/${manga?.id}`);
               }}
               className={cx("manga-card")}
               sx={{
@@ -117,28 +129,23 @@ const Favourite = () => {
               <CardMedia
                 component="img"
                 height="250"
-                image={manga.thumbnail}
-                alt={manga.title}
+                image={manga?.thumbnail || fallbackImage}
+                alt={manga?.title}
                 className={cx("card-media")}
-                onError={(e) => {
-                  e.target.onerror = null;
-                  e.target.src =
-                    "https://itphutran.com/wp-content/uploads/2017/05/H%C6%B0%E1%BB%9Bng-d%E1%BA%ABn-x%E1%BB%AD-l%C3%BD-l%E1%BB%97i-404-Page-Not-Found-trong-Java-v%C3%A0-PHP.jpg";
-                }}
               />
               <Box className={cx("overlay")}>
-                <Typography className={cx("title")}>{manga.title}</Typography>
+                <Typography className={cx("title")}>{manga?.title}</Typography>
                 <Box className={cx("info")}>
                   <Box className={cx("info-item")}>
                     <PersonAdd sx={{ fontSize: "16px", marginRight: "4px" }} />
                     <Typography sx={{ fontSize: "14px" }}>
-                      {manga.followers}
+                      {manga?.followers}
                     </Typography>
                   </Box>
                   <Box className={cx("info-item")}>
                     <Visibility sx={{ fontSize: "16px", marginRight: "4px" }} />
                     <Typography sx={{ fontSize: "14px" }}>
-                      {manga.total_views}
+                      {manga?.total_views}
                     </Typography>
                   </Box>
                 </Box>

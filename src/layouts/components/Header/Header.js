@@ -11,8 +11,15 @@ import {
   Badge,
   ListItemAvatar,
   ListItemText,
+  createTheme,
+  useMediaQuery,
+  ListItem,
+  List,
+  Drawer,
 } from "@mui/material";
 import { Notifications } from "@mui/icons-material";
+import SearchIcon from "@mui/icons-material/Search";
+import { Menu as MenuIcon } from "@mui/icons-material";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import Search from "../Search";
@@ -33,6 +40,8 @@ function Header() {
   const navigate = useNavigate();
   const [anchorEl, setAnchorEl] = useState(null);
   const [anchorElNoti, setAnchorElNoti] = useState(null);
+  const [drawerOpen, setDrawerOpen] = useState(false);
+  const [searchOpen, setSearchOpen] = useState(false);
   const isMenuOpen = Boolean(anchorEl);
   const isNotiOpen = Boolean(anchorElNoti);
   const location = useLocation();
@@ -40,6 +49,14 @@ function Header() {
   const accessToken = currentUser?.metadata.tokens.accessToken;
   const userID = currentUser?.metadata.user._id;
   const axiosJWT = createAxios(currentUser);
+
+  const toggleDrawer = (open) => (event) => {
+    setDrawerOpen(open);
+  };
+
+  const toggleSearch = (open) => (event) => {
+    setSearchOpen(open);
+  };
 
   const handleLogout = () => {
     logout(accessToken, userID, dispatch, navigate, axiosJWT);
@@ -124,24 +141,41 @@ function Header() {
     };
   }, [socket]);
 
+  const theme = createTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
+  const isTablet = useMediaQuery(theme.breakpoints.between("sm", "lg"));
+
   return (
     <AppBar
       sx={{
-        paddingTop: "20px",
         backgroundColor: "var(--black)",
         display: "flex",
         justifyContent: "space-between",
         alignItems: "center",
+        maxWidth: "100%",
       }}
-      position="static"
+      position="fixed"
     >
-      <Toolbar sx={{ width: "var(--default-header-width)" }}>
+      <Toolbar sx={{ width: "var(--default-header-width)", maxWidth: "100%" }}>
         {/* Logo + Search bar */}
-        <Box display="flex" flexGrow={1} alignItems="center">
+        {isMobile && (
+          <IconButton
+            sx={{ color: "var(--white)", paddingLeft: "20px" }}
+            onClick={toggleDrawer(true)}
+          >
+            <MenuIcon />
+          </IconButton>
+        )}
+        <Box
+          display="flex"
+          flexGrow={1}
+          alignItems="center"
+          sx={{ justifyContent: isMobile ? "center" : "unset" }}
+        >
           <Typography
             variant="h6"
             component="div"
-            sx={{ mr: 2, fontFamily: "var(--font-family)" }}
+            sx={{ marginRight: "14px", fontFamily: "var(--font-family)" }}
           >
             <Link
               to="/"
@@ -149,16 +183,17 @@ function Header() {
                 color: "var(--yellow)",
                 textDecoration: "none",
                 fontWeight: "bold",
+                paddingLeft: isMobile ? "20px" : isTablet ? "25px" : "0px",
               }}
             >
               LEWIS MANGA
             </Link>
           </Typography>
-          <Search />
+          {!isMobile && <Search />}
         </Box>
 
         {/* Navigation links */}
-        <Box display="flex" sx={{ mr: 3 }}>
+        <Box sx={{ display: isMobile ? "none" : "flex", mr: 3 }}>
           <Typography
             variant="body1"
             sx={{ mx: 2, fontFamily: "var(--font-family)" }}
@@ -194,12 +229,26 @@ function Header() {
         </Box>
 
         {/* Notifications + Avatar */}
-        <Box display="flex" alignItems="center">
-          <IconButton color="inherit" onClick={handleNotiOpen}>
-            <Badge badgeContent={haveNotRead} color="error">
-              <Notifications />
-            </Badge>
-          </IconButton>
+        <Box
+          display="flex"
+          alignItems="center"
+          sx={{ paddingRight: isTablet ? "10px" : "0" }}
+        >
+          {currentUser && (
+            <IconButton color="inherit" onClick={handleNotiOpen}>
+              <Badge badgeContent={haveNotRead} color="error">
+                <Notifications />
+              </Badge>
+            </IconButton>
+          )}
+          {isMobile && (
+            <IconButton
+              sx={{ color: "var(--white)" }}
+              onClick={toggleSearch(true)}
+            >
+              <SearchIcon />
+            </IconButton>
+          )}
           <Menu
             anchorEl={anchorElNoti}
             anchorOrigin={{
@@ -330,6 +379,48 @@ function Header() {
               </IconButton>
             </div>
           </HeadlessTippy>
+          {/* Drawer */}
+          <Drawer anchor="left" open={drawerOpen} onClose={toggleDrawer(false)}>
+            <Box
+              sx={{
+                width: 250,
+                backgroundColor: "var(--black)",
+                height: "100%",
+                color: "var(--white)",
+              }}
+              role="presentation"
+              onClick={toggleDrawer(false)}
+              onKeyDown={toggleDrawer(false)}
+            >
+              <List>
+                <ListItem component={Link} to="/" style={linkStyle("/")}>
+                  <ListItemText primary="Home" />
+                </ListItem>
+                <ListItem
+                  component={Link}
+                  to="/genres"
+                  style={linkStyle("/genres")}
+                >
+                  <ListItemText primary="Genres" />
+                </ListItem>
+                <ListItem component={Link} to="/new" style={linkStyle("/new")}>
+                  <ListItemText primary="New" />
+                </ListItem>
+                <ListItem
+                  component={Link}
+                  to="/popular"
+                  style={linkStyle("/popular")}
+                >
+                  <ListItemText primary="Popular" />
+                </ListItem>
+              </List>
+            </Box>
+          </Drawer>
+          <Drawer anchor="top" open={searchOpen} onClose={toggleSearch(false)}>
+            <Box sx={{ padding: "12px 0", backgroundColor: "var(--black)" }}>
+              <Search />
+            </Box>
+          </Drawer>
         </Box>
       </Toolbar>
     </AppBar>

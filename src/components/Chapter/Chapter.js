@@ -18,6 +18,7 @@ import { Drawer, IconButton } from "@mui/material";
 import CommentIcon from "@mui/icons-material/Comment";
 import { createAxios } from "../../createAxios";
 import io from "socket.io-client";
+import CONSTANT from "../../constants/index";
 
 const socket = io.connect(process.env.REACT_APP_SOCKET_SERVER);
 
@@ -34,6 +35,7 @@ function Chapter() {
   const accessToken = currentUser?.metadata.tokens.accessToken;
   const userID = currentUser?.metadata.user._id;
   const axiosJWT = createAxios(currentUser);
+  const { fallbackMangaChapter } = CONSTANT;
 
   const toggleCommentDrawer = () => {
     setOpenCommentDrawer((prev) => !prev);
@@ -51,7 +53,11 @@ function Chapter() {
         await socket.emit("update_notification", { user_id: userID });
       }
       const res = await getChapter(slug, chapter.split("-")[1], dispatch);
-      setCurrentChapter(res);
+      if (res) {
+        setCurrentChapter(res);
+      } else {
+        setCurrentChapter(fallbackMangaChapter);
+      }
       setLoading(false);
     };
     fetchData();

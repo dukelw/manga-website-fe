@@ -10,6 +10,8 @@ import {
   Button,
   IconButton,
   Skeleton,
+  createTheme,
+  useMediaQuery,
 } from "@mui/material";
 import SaveIcon from "@mui/icons-material/Save";
 import VisibilityIcon from "@mui/icons-material/Visibility";
@@ -22,6 +24,8 @@ import {
   createHistory,
   getManga,
 } from "../../redux/apiRequest";
+import CONSTANTS from "../../constants";
+import { MenuBook } from "@mui/icons-material";
 
 function Manga() {
   const currentUser = useSelector((state) => state.user.signin.currentUser);
@@ -33,6 +37,7 @@ function Manga() {
   const navigate = useNavigate();
   const [isExpanded, setIsExpanded] = useState(false);
   const [loading, setLoading] = useState(true);
+  const { fallbackMangaInfo, fallbackImage } = CONSTANTS;
 
   const handleFavourite = () => {
     createFavourite(userID, slug, accessToken, dispatch, axiosJWT);
@@ -51,8 +56,11 @@ function Manga() {
     }
   }, [slug]);
 
-  const currentManga = useSelector((state) => state?.manga.get.manga);
+  const currentManga = useSelector((state) => state.manga.get.manga);
   console.log(currentManga);
+  const theme = createTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
+  const isTablet = useMediaQuery(theme.breakpoints.between("sm", "lg"));
 
   if (loading) {
     return (
@@ -171,12 +179,23 @@ function Manga() {
 
   return (
     <Container>
-      <Grid container spacing={4} sx={{ marginTop: 4 }}>
+      <Grid container spacing={4} sx={{ marginTop: isMobile ? 0 : 4 }}>
         {/* Thumbnail */}
-        <Grid item xs={12} sm={3}>
+        <Grid
+          sx={{
+            display: isMobile ? "flex" : "unset",
+            justifyContent: "center",
+          }}
+          item
+          xs={12}
+          sm={3}
+        >
           <CardMedia
             component="img"
-            image={thumbnail}
+            image={
+              thumbnail ||
+              fallbackImage
+            }
             alt={title}
             sx={{
               borderRadius: 2,
@@ -304,14 +323,16 @@ function Manga() {
                   </Typography>
                 </Box>
               </Box>
-              <Box
-                sx={{
-                  display: "flex",
-                  alignItems: "center",
-                }}
-              >
-                {renderRating(rate)}
-              </Box>
+              {rate && (
+                <Box
+                  sx={{
+                    display: "flex",
+                    alignItems: "center",
+                  }}
+                >
+                  {renderRating(rate)}
+                </Box>
+              )}
               <Typography
                 sx={{
                   color: "var(--white)",
@@ -428,13 +449,8 @@ function Manga() {
                     >
                       {chapter.name}
                     </span>
-                    <IconButton
-                      onClick={() => {
-                        /* Hàm xử lý lưu ở đây */
-                      }}
-                      sx={{ marginLeft: 1 }}
-                    >
-                      <SaveIcon sx={{ color: "var(--green)" }} />
+                    <IconButton onClick={() => {}} sx={{ marginLeft: 1 }}>
+                      <MenuBook sx={{ color: "var(--green)" }} />
                     </IconButton>
                   </Button>
                 </Box>

@@ -3,7 +3,6 @@ import { Fragment } from "react";
 import { publicRoutes, privateRoutes } from "../src/routes";
 import "./App.css";
 import { useSelector } from "react-redux";
-import io from "socket.io-client";
 import DefaultLayout from "./layouts/DefaultLayout/DefaultLayout";
 import { createTheme, ThemeProvider } from "@mui/material";
 const theme = createTheme();

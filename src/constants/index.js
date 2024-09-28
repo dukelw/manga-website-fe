@@ -1053,6 +1053,738 @@ const CONSTANTS = {
     total_pages: 2,
     current_page: 1,
   },
+  fallbackMangaInfo: {
+    title: "Bạn Gái Của Tôi Toàn Là Truyền Thuyết",
+    thumbnail:
+      "https://ddntcthcd.com/nettruyen/thumb/ban-gai-cua-toi-toan-la-truyen-thuyet.jpg",
+    description:
+      "Chào mừng các đạo hữu thân mến của Nhattruyen, hãy cùng thưởng thức bộ truyện tranh Bạn Gái Của Tôi Toàn Là Truyền Thuyết đầy cuốn hút trên website của chúng tôi. Bộ truyện này thuộc về các thể loại Action, Comedy, Manhua, Supernatural, Truyện Màu và được cập nhật chap mới liên tục trên website Nhattruyen. Đây là một trong những tác phẩm nổi bật nhất của Đang cập nhật và đã thu hút hàng triệu độc giả trên khắp thế giới.NComics là website đọc truyện tranh online hàng đầu tại Việt Nam, cung cấp cho bạn những bộ truyện tranh đa dạng và phong phú, từ những thể loại truyện tranh ngôn tình lãng mạn, truyện tranh đam mỹ nóng bỏng, truyện tranh xuyên không phiêu lưu, truyện tranh tu tiên huyền ảo, cho đến những thể loại truyện adult gây cấn và kích thích. Bạn có thể tìm kiếm và đọc truyện tranh theo nhiều tiêu chí khác nhau, như tên truyện, tác giả, thể loại, năm xuất bản, số lượt xem, số lượt yêu thích và nhiều tiêu chí khác.NComics luôn cập nhật những bộ truyện tranh mới nhất và nhanh nhất, đảm bảo bạn sẽ không bỏ lỡ bất kỳ bộ truyện tranh nào mà bạn yêu thích. Hãy đến với NComics để thưởng thức những giây phút giải trí tuyệt vời cùng với những bộ truyện tranh hấp dẫn nhất!Truyện tranh Bạn Gái Của Tôi Toàn Là Truyền Thuyết được cập nhật sớm nhất và đầy đủ tại DocTruyen3Q. Bạn đọc đừng quên bình luận và chia sẻ, ủng hộ DocTruyen3Q ra các chương mới nhất của truyện Bạn Gái Của Tôi Toàn Là Truyền Thuyết.Để trải nghiệm truyện tranh tốt nhất, bạn nên đăng ký tài khoản tại NComics. Bạn sẽ có thể theo dõi những bộ truyện yêu thích, bình luận và giao lưu với cộng đồng độc giả sôi nổi. NComics tự hào mang đến cho bạn thế giới truyện tranh đa dạng và phong phú, với nhiều thể loại và tác phẩm hấp dẫn. Hãy đăng ký ngay hôm nay để khám phá những điều thú vị cùng Bạn Gái Của Tôi Toàn Là Truyền Thuyết!",
+    authors: "Updating",
+    status: "Ongoing",
+    genres: [
+      { id: "action-95", name: "Action" },
+      { id: "comedy-99", name: "Comedy" },
+      { id: "manhua", name: "Manhua" },
+      { id: "supernatural", name: "Supernatural" },
+      { id: "truyen-mau", name: "Truyện Màu" },
+    ],
+    total_views: 0,
+    average: 4.5,
+    rating_count: 25,
+    followers: 0,
+    total_vote: 87,
+    chapters: [
+      { id: 84, name: "Chapter 84" },
+      { id: 83, name: "Chapter 83" },
+      { id: 82, name: "Chapter 82" },
+      { id: 81, name: "Chapter 81" },
+      { id: 80, name: "Chapter 80" },
+      { id: 79, name: "Chapter 79" },
+      { id: 78, name: "Chapter 78" },
+      { id: 77, name: "Chapter 77" },
+      { id: 76, name: "Chapter 76" },
+      { id: 75, name: "Chapter 75" },
+      { id: 74, name: "Chapter 74" },
+      { id: 73, name: "Chapter 73" },
+      { id: 72, name: "Chapter 72" },
+      { id: 71, name: "Chapter 71" },
+      { id: 70, name: "Chapter 70" },
+      { id: 69, name: "Chapter 69" },
+      { id: 68, name: "Chapter 68" },
+      { id: 67, name: "Chapter 67" },
+      { id: 66, name: "Chapter 66" },
+      { id: 65, name: "Chapter 65" },
+      { id: 64, name: "Chapter 64" },
+      { id: 63, name: "Chapter 63" },
+      { id: 62, name: "Chapter 62" },
+      { id: 61, name: "Chapter 61" },
+      { id: 60, name: "Chapter 60" },
+      { id: 59, name: "Chapter 59" },
+      { id: 58, name: "Chapter 58" },
+      { id: 57, name: "Chapter 57" },
+      { id: 56, name: "Chapter 56" },
+      { id: 55, name: "Chapter 55" },
+      { id: 54, name: "Chapter 54" },
+      { id: 53, name: "Chapter 53" },
+      { id: 52, name: "Chapter 52" },
+      { id: 51, name: "Chapter 51" },
+      { id: 50, name: "Chapter 50" },
+      { id: 49, name: "Chapter 49" },
+      { id: 48, name: "Chapter 48" },
+      { id: 47, name: "Chapter 47" },
+      { id: 46, name: "Chapter 46" },
+      { id: 45, name: "Chapter 45" },
+      { id: 44, name: "Chapter 44" },
+      { id: 43, name: "Chapter 43" },
+      { id: 42, name: "Chapter 42" },
+      { id: 41, name: "Chapter 41" },
+      { id: 40, name: "Chapter 40" },
+      { id: 39, name: "Chapter 39" },
+      { id: 38, name: "Chapter 38" },
+      { id: 37, name: "Chapter 37" },
+      { id: 36, name: "Chapter 36" },
+      { id: 35, name: "Chapter 35" },
+      { id: 34, name: "Chapter 34" },
+      { id: 33, name: "Chapter 33" },
+      { id: 32, name: "Chapter 32" },
+      { id: 31, name: "Chapter 31" },
+      { id: 30, name: "Chapter 30" },
+      { id: 29, name: "Chapter 29" },
+      { id: 28, name: "Chapter 28" },
+      { id: 27, name: "Chapter 27" },
+      { id: 26, name: "Chapter 26" },
+      { id: 25, name: "Chapter 25" },
+      { id: 24, name: "Chapter 24" },
+      { id: 23, name: "Chapter 23" },
+      { id: 22, name: "Chapter 22" },
+      { id: 21, name: "Chapter 21" },
+      { id: 20, name: "Chapter 20" },
+      { id: 19, name: "Chapter 19" },
+      { id: 18, name: "Chapter 18" },
+      { id: 17, name: "Chapter 17" },
+      { id: 16, name: "Chapter 16" },
+      { id: 15, name: "Chapter 15" },
+      { id: 14, name: "Chapter 14" },
+      { id: 13, name: "Chapter 13" },
+      { id: 12, name: "Chapter 12" },
+      { id: 11, name: "Chapter 11" },
+      { id: 10, name: "Chapter 10" },
+      { id: 9, name: "Chapter 9" },
+      { id: 8, name: "Chapter 8" },
+      { id: 7, name: "Chapter 7" },
+      { id: 6, name: "Chapter 6" },
+      { id: 5, name: "Chapter 5" },
+      { id: 4, name: "Chapter 4" },
+      { id: 3, name: "Chapter 3" },
+      { id: 2, name: "Chapter 2" },
+      { id: 1, name: "Chapter 1" },
+    ],
+    id: "ban-gai-cua-toi-toan-la-truyen-thuyet",
+    is_adult: false,
+    other_names: [],
+  },
+  fallbackMangaChapter: {
+    images: [
+      {
+        page: 0,
+        src: "https://kcgsbok.com/nettruyen/ban-gai-cua-toi-toan-la-truyen-thuyet/1/0.jpg",
+        backup_url:
+          "https://nchcccl.pro/nettruyen/ban-gai-cua-toi-toan-la-truyen-thuyet/1/0.jpg",
+      },
+      {
+        page: 1,
+        src: "https://kcgsbok.com/nettruyen/ban-gai-cua-toi-toan-la-truyen-thuyet/1/1.jpg",
+        backup_url:
+          "https://naetmcxt.xyz/nettruyen/ban-gai-cua-toi-toan-la-truyen-thuyet/1/1.jpg",
+      },
+      {
+        page: 2,
+        src: "https://kcgsbok.com/nettruyen/ban-gai-cua-toi-toan-la-truyen-thuyet/1/2.jpg",
+        backup_url:
+          "https://nchcccl.pro/nettruyen/ban-gai-cua-toi-toan-la-truyen-thuyet/1/2.jpg",
+      },
+      {
+        page: 3,
+        src: "https://kcgsbok.com/nettruyen/ban-gai-cua-toi-toan-la-truyen-thuyet/1/3.jpg",
+        backup_url:
+          "https://naetmcxt.xyz/nettruyen/ban-gai-cua-toi-toan-la-truyen-thuyet/1/3.jpg",
+      },
+      {
+        page: 4,
+        src: "https://kcgsbok.com/nettruyen/ban-gai-cua-toi-toan-la-truyen-thuyet/1/4.jpg",
+        backup_url:
+          "https://nchcccl.pro/nettruyen/ban-gai-cua-toi-toan-la-truyen-thuyet/1/4.jpg",
+      },
+      {
+        page: 5,
+        src: "https://kcgsbok.com/nettruyen/ban-gai-cua-toi-toan-la-truyen-thuyet/1/5.jpg",
+        backup_url:
+          "https://naetmcxt.xyz/nettruyen/ban-gai-cua-toi-toan-la-truyen-thuyet/1/5.jpg",
+      },
+      {
+        page: 6,
+        src: "https://kcgsbok.com/nettruyen/ban-gai-cua-toi-toan-la-truyen-thuyet/1/6.jpg",
+        backup_url:
+          "https://nchcccl.pro/nettruyen/ban-gai-cua-toi-toan-la-truyen-thuyet/1/6.jpg",
+      },
+      {
+        page: 7,
+        src: "https://kcgsbok.com/nettruyen/ban-gai-cua-toi-toan-la-truyen-thuyet/1/7.jpg",
+        backup_url:
+          "https://naetmcxt.xyz/nettruyen/ban-gai-cua-toi-toan-la-truyen-thuyet/1/7.jpg",
+      },
+      {
+        page: 8,
+        src: "https://kcgsbok.com/nettruyen/ban-gai-cua-toi-toan-la-truyen-thuyet/1/8.jpg",
+        backup_url:
+          "https://nchcccl.pro/nettruyen/ban-gai-cua-toi-toan-la-truyen-thuyet/1/8.jpg",
+      },
+      {
+        page: 9,
+        src: "https://kcgsbok.com/nettruyen/ban-gai-cua-toi-toan-la-truyen-thuyet/1/9.jpg",
+        backup_url:
+          "https://naetmcxt.xyz/nettruyen/ban-gai-cua-toi-toan-la-truyen-thuyet/1/9.jpg",
+      },
+      {
+        page: 10,
+        src: "https://kcgsbok.com/nettruyen/ban-gai-cua-toi-toan-la-truyen-thuyet/1/10.jpg",
+        backup_url:
+          "https://nchcccl.pro/nettruyen/ban-gai-cua-toi-toan-la-truyen-thuyet/1/10.jpg",
+      },
+      {
+        page: 11,
+        src: "https://kcgsbok.com/nettruyen/ban-gai-cua-toi-toan-la-truyen-thuyet/1/11.jpg",
+        backup_url:
+          "https://naetmcxt.xyz/nettruyen/ban-gai-cua-toi-toan-la-truyen-thuyet/1/11.jpg",
+      },
+      {
+        page: 12,
+        src: "https://kcgsbok.com/nettruyen/ban-gai-cua-toi-toan-la-truyen-thuyet/1/12.jpg",
+        backup_url:
+          "https://nchcccl.pro/nettruyen/ban-gai-cua-toi-toan-la-truyen-thuyet/1/12.jpg",
+      },
+      {
+        page: 13,
+        src: "https://kcgsbok.com/nettruyen/ban-gai-cua-toi-toan-la-truyen-thuyet/1/13.jpg",
+        backup_url:
+          "https://naetmcxt.xyz/nettruyen/ban-gai-cua-toi-toan-la-truyen-thuyet/1/13.jpg",
+      },
+      {
+        page: 14,
+        src: "https://kcgsbok.com/nettruyen/ban-gai-cua-toi-toan-la-truyen-thuyet/1/14.jpg",
+        backup_url:
+          "https://nchcccl.pro/nettruyen/ban-gai-cua-toi-toan-la-truyen-thuyet/1/14.jpg",
+      },
+      {
+        page: 15,
+        src: "https://kcgsbok.com/nettruyen/ban-gai-cua-toi-toan-la-truyen-thuyet/1/15.jpg",
+        backup_url:
+          "https://naetmcxt.xyz/nettruyen/ban-gai-cua-toi-toan-la-truyen-thuyet/1/15.jpg",
+      },
+      {
+        page: 16,
+        src: "https://kcgsbok.com/nettruyen/ban-gai-cua-toi-toan-la-truyen-thuyet/1/16.jpg",
+        backup_url:
+          "https://nchcccl.pro/nettruyen/ban-gai-cua-toi-toan-la-truyen-thuyet/1/16.jpg",
+      },
+      {
+        page: 17,
+        src: "https://kcgsbok.com/nettruyen/ban-gai-cua-toi-toan-la-truyen-thuyet/1/17.jpg",
+        backup_url:
+          "https://naetmcxt.xyz/nettruyen/ban-gai-cua-toi-toan-la-truyen-thuyet/1/17.jpg",
+      },
+      {
+        page: 18,
+        src: "https://kcgsbok.com/nettruyen/ban-gai-cua-toi-toan-la-truyen-thuyet/1/18.jpg",
+        backup_url:
+          "https://nchcccl.pro/nettruyen/ban-gai-cua-toi-toan-la-truyen-thuyet/1/18.jpg",
+      },
+      {
+        page: 19,
+        src: "https://kcgsbok.com/nettruyen/ban-gai-cua-toi-toan-la-truyen-thuyet/1/19.jpg",
+        backup_url:
+          "https://naetmcxt.xyz/nettruyen/ban-gai-cua-toi-toan-la-truyen-thuyet/1/19.jpg",
+      },
+      {
+        page: 20,
+        src: "https://kcgsbok.com/nettruyen/ban-gai-cua-toi-toan-la-truyen-thuyet/1/20.jpg",
+        backup_url:
+          "https://nchcccl.pro/nettruyen/ban-gai-cua-toi-toan-la-truyen-thuyet/1/20.jpg",
+      },
+      {
+        page: 21,
+        src: "https://kcgsbok.com/nettruyen/ban-gai-cua-toi-toan-la-truyen-thuyet/1/21.jpg",
+        backup_url:
+          "https://naetmcxt.xyz/nettruyen/ban-gai-cua-toi-toan-la-truyen-thuyet/1/21.jpg",
+      },
+      {
+        page: 22,
+        src: "https://kcgsbok.com/nettruyen/ban-gai-cua-toi-toan-la-truyen-thuyet/1/22.jpg",
+        backup_url:
+          "https://nchcccl.pro/nettruyen/ban-gai-cua-toi-toan-la-truyen-thuyet/1/22.jpg",
+      },
+      {
+        page: 23,
+        src: "https://kcgsbok.com/nettruyen/ban-gai-cua-toi-toan-la-truyen-thuyet/1/23.jpg",
+        backup_url:
+          "https://naetmcxt.xyz/nettruyen/ban-gai-cua-toi-toan-la-truyen-thuyet/1/23.jpg",
+      },
+      {
+        page: 24,
+        src: "https://kcgsbok.com/nettruyen/ban-gai-cua-toi-toan-la-truyen-thuyet/1/24.jpg",
+        backup_url:
+          "https://nchcccl.pro/nettruyen/ban-gai-cua-toi-toan-la-truyen-thuyet/1/24.jpg",
+      },
+      {
+        page: 25,
+        src: "https://kcgsbok.com/nettruyen/ban-gai-cua-toi-toan-la-truyen-thuyet/1/25.jpg",
+        backup_url:
+          "https://naetmcxt.xyz/nettruyen/ban-gai-cua-toi-toan-la-truyen-thuyet/1/25.jpg",
+      },
+      {
+        page: 26,
+        src: "https://kcgsbok.com/nettruyen/ban-gai-cua-toi-toan-la-truyen-thuyet/1/26.jpg",
+        backup_url:
+          "https://nchcccl.pro/nettruyen/ban-gai-cua-toi-toan-la-truyen-thuyet/1/26.jpg",
+      },
+      {
+        page: 27,
+        src: "https://kcgsbok.com/nettruyen/ban-gai-cua-toi-toan-la-truyen-thuyet/1/27.jpg",
+        backup_url:
+          "https://naetmcxt.xyz/nettruyen/ban-gai-cua-toi-toan-la-truyen-thuyet/1/27.jpg",
+      },
+      {
+        page: 28,
+        src: "https://kcgsbok.com/nettruyen/ban-gai-cua-toi-toan-la-truyen-thuyet/1/28.jpg",
+        backup_url:
+          "https://nchcccl.pro/nettruyen/ban-gai-cua-toi-toan-la-truyen-thuyet/1/28.jpg",
+      },
+      {
+        page: 29,
+        src: "https://kcgsbok.com/nettruyen/ban-gai-cua-toi-toan-la-truyen-thuyet/1/29.jpg",
+        backup_url:
+          "https://naetmcxt.xyz/nettruyen/ban-gai-cua-toi-toan-la-truyen-thuyet/1/29.jpg",
+      },
+      {
+        page: 30,
+        src: "https://kcgsbok.com/nettruyen/ban-gai-cua-toi-toan-la-truyen-thuyet/1/30.jpg",
+        backup_url:
+          "https://nchcccl.pro/nettruyen/ban-gai-cua-toi-toan-la-truyen-thuyet/1/30.jpg",
+      },
+      {
+        page: 31,
+        src: "https://kcgsbok.com/nettruyen/ban-gai-cua-toi-toan-la-truyen-thuyet/1/31.jpg",
+        backup_url:
+          "https://naetmcxt.xyz/nettruyen/ban-gai-cua-toi-toan-la-truyen-thuyet/1/31.jpg",
+      },
+      {
+        page: 32,
+        src: "https://kcgsbok.com/nettruyen/ban-gai-cua-toi-toan-la-truyen-thuyet/1/32.jpg",
+        backup_url:
+          "https://nchcccl.pro/nettruyen/ban-gai-cua-toi-toan-la-truyen-thuyet/1/32.jpg",
+      },
+      {
+        page: 33,
+        src: "https://kcgsbok.com/nettruyen/ban-gai-cua-toi-toan-la-truyen-thuyet/1/33.jpg",
+        backup_url:
+          "https://naetmcxt.xyz/nettruyen/ban-gai-cua-toi-toan-la-truyen-thuyet/1/33.jpg",
+      },
+      {
+        page: 34,
+        src: "https://kcgsbok.com/nettruyen/ban-gai-cua-toi-toan-la-truyen-thuyet/1/34.jpg",
+        backup_url:
+          "https://nchcccl.pro/nettruyen/ban-gai-cua-toi-toan-la-truyen-thuyet/1/34.jpg",
+      },
+      {
+        page: 35,
+        src: "https://kcgsbok.com/nettruyen/ban-gai-cua-toi-toan-la-truyen-thuyet/1/35.jpg",
+        backup_url:
+          "https://naetmcxt.xyz/nettruyen/ban-gai-cua-toi-toan-la-truyen-thuyet/1/35.jpg",
+      },
+      {
+        page: 36,
+        src: "https://kcgsbok.com/nettruyen/ban-gai-cua-toi-toan-la-truyen-thuyet/1/36.jpg",
+        backup_url:
+          "https://nchcccl.pro/nettruyen/ban-gai-cua-toi-toan-la-truyen-thuyet/1/36.jpg",
+      },
+      {
+        page: 37,
+        src: "https://kcgsbok.com/nettruyen/ban-gai-cua-toi-toan-la-truyen-thuyet/1/37.jpg",
+        backup_url:
+          "https://naetmcxt.xyz/nettruyen/ban-gai-cua-toi-toan-la-truyen-thuyet/1/37.jpg",
+      },
+      {
+        page: 38,
+        src: "https://kcgsbok.com/nettruyen/ban-gai-cua-toi-toan-la-truyen-thuyet/1/38.jpg",
+        backup_url:
+          "https://nchcccl.pro/nettruyen/ban-gai-cua-toi-toan-la-truyen-thuyet/1/38.jpg",
+      },
+      {
+        page: 39,
+        src: "https://kcgsbok.com/nettruyen/ban-gai-cua-toi-toan-la-truyen-thuyet/1/39.jpg",
+        backup_url:
+          "https://naetmcxt.xyz/nettruyen/ban-gai-cua-toi-toan-la-truyen-thuyet/1/39.jpg",
+      },
+      {
+        page: 40,
+        src: "https://kcgsbok.com/nettruyen/ban-gai-cua-toi-toan-la-truyen-thuyet/1/40.jpg",
+        backup_url:
+          "https://nchcccl.pro/nettruyen/ban-gai-cua-toi-toan-la-truyen-thuyet/1/40.jpg",
+      },
+      {
+        page: 41,
+        src: "https://kcgsbok.com/nettruyen/ban-gai-cua-toi-toan-la-truyen-thuyet/1/41.jpg",
+        backup_url:
+          "https://naetmcxt.xyz/nettruyen/ban-gai-cua-toi-toan-la-truyen-thuyet/1/41.jpg",
+      },
+      {
+        page: 42,
+        src: "https://kcgsbok.com/nettruyen/ban-gai-cua-toi-toan-la-truyen-thuyet/1/42.jpg",
+        backup_url:
+          "https://nchcccl.pro/nettruyen/ban-gai-cua-toi-toan-la-truyen-thuyet/1/42.jpg",
+      },
+      {
+        page: 43,
+        src: "https://kcgsbok.com/nettruyen/ban-gai-cua-toi-toan-la-truyen-thuyet/1/43.jpg",
+        backup_url:
+          "https://naetmcxt.xyz/nettruyen/ban-gai-cua-toi-toan-la-truyen-thuyet/1/43.jpg",
+      },
+      {
+        page: 44,
+        src: "https://kcgsbok.com/nettruyen/ban-gai-cua-toi-toan-la-truyen-thuyet/1/44.jpg",
+        backup_url:
+          "https://nchcccl.pro/nettruyen/ban-gai-cua-toi-toan-la-truyen-thuyet/1/44.jpg",
+      },
+      {
+        page: 45,
+        src: "https://kcgsbok.com/nettruyen/ban-gai-cua-toi-toan-la-truyen-thuyet/1/45.jpg",
+        backup_url:
+          "https://naetmcxt.xyz/nettruyen/ban-gai-cua-toi-toan-la-truyen-thuyet/1/45.jpg",
+      },
+      {
+        page: 46,
+        src: "https://kcgsbok.com/nettruyen/ban-gai-cua-toi-toan-la-truyen-thuyet/1/46.jpg",
+        backup_url:
+          "https://nchcccl.pro/nettruyen/ban-gai-cua-toi-toan-la-truyen-thuyet/1/46.jpg",
+      },
+      {
+        page: 47,
+        src: "https://kcgsbok.com/nettruyen/ban-gai-cua-toi-toan-la-truyen-thuyet/1/47.jpg",
+        backup_url:
+          "https://naetmcxt.xyz/nettruyen/ban-gai-cua-toi-toan-la-truyen-thuyet/1/47.jpg",
+      },
+      {
+        page: 48,
+        src: "https://kcgsbok.com/nettruyen/ban-gai-cua-toi-toan-la-truyen-thuyet/1/48.jpg",
+        backup_url:
+          "https://nchcccl.pro/nettruyen/ban-gai-cua-toi-toan-la-truyen-thuyet/1/48.jpg",
+      },
+      {
+        page: 49,
+        src: "https://kcgsbok.com/nettruyen/ban-gai-cua-toi-toan-la-truyen-thuyet/1/49.jpg",
+        backup_url:
+          "https://naetmcxt.xyz/nettruyen/ban-gai-cua-toi-toan-la-truyen-thuyet/1/49.jpg",
+      },
+      {
+        page: 50,
+        src: "https://kcgsbok.com/nettruyen/ban-gai-cua-toi-toan-la-truyen-thuyet/1/50.jpg",
+        backup_url:
+          "https://nchcccl.pro/nettruyen/ban-gai-cua-toi-toan-la-truyen-thuyet/1/50.jpg",
+      },
+      {
+        page: 51,
+        src: "https://kcgsbok.com/nettruyen/ban-gai-cua-toi-toan-la-truyen-thuyet/1/51.jpg",
+        backup_url:
+          "https://naetmcxt.xyz/nettruyen/ban-gai-cua-toi-toan-la-truyen-thuyet/1/51.jpg",
+      },
+      {
+        page: 52,
+        src: "https://kcgsbok.com/nettruyen/ban-gai-cua-toi-toan-la-truyen-thuyet/1/52.jpg",
+        backup_url:
+          "https://nchcccl.pro/nettruyen/ban-gai-cua-toi-toan-la-truyen-thuyet/1/52.jpg",
+      },
+      {
+        page: 53,
+        src: "https://kcgsbok.com/nettruyen/ban-gai-cua-toi-toan-la-truyen-thuyet/1/53.jpg",
+        backup_url:
+          "https://naetmcxt.xyz/nettruyen/ban-gai-cua-toi-toan-la-truyen-thuyet/1/53.jpg",
+      },
+      {
+        page: 54,
+        src: "https://kcgsbok.com/nettruyen/ban-gai-cua-toi-toan-la-truyen-thuyet/1/54.jpg",
+        backup_url:
+          "https://nchcccl.pro/nettruyen/ban-gai-cua-toi-toan-la-truyen-thuyet/1/54.jpg",
+      },
+      {
+        page: 55,
+        src: "https://kcgsbok.com/nettruyen/ban-gai-cua-toi-toan-la-truyen-thuyet/1/55.jpg",
+        backup_url:
+          "https://naetmcxt.xyz/nettruyen/ban-gai-cua-toi-toan-la-truyen-thuyet/1/55.jpg",
+      },
+      {
+        page: 56,
+        src: "https://kcgsbok.com/nettruyen/ban-gai-cua-toi-toan-la-truyen-thuyet/1/56.jpg",
+        backup_url:
+          "https://nchcccl.pro/nettruyen/ban-gai-cua-toi-toan-la-truyen-thuyet/1/56.jpg",
+      },
+      {
+        page: 57,
+        src: "https://kcgsbok.com/nettruyen/ban-gai-cua-toi-toan-la-truyen-thuyet/1/57.jpg",
+        backup_url:
+          "https://naetmcxt.xyz/nettruyen/ban-gai-cua-toi-toan-la-truyen-thuyet/1/57.jpg",
+      },
+      {
+        page: 58,
+        src: "https://kcgsbok.com/nettruyen/ban-gai-cua-toi-toan-la-truyen-thuyet/1/58.jpg",
+        backup_url:
+          "https://nchcccl.pro/nettruyen/ban-gai-cua-toi-toan-la-truyen-thuyet/1/58.jpg",
+      },
+      {
+        page: 59,
+        src: "https://kcgsbok.com/nettruyen/ban-gai-cua-toi-toan-la-truyen-thuyet/1/59.jpg",
+        backup_url:
+          "https://naetmcxt.xyz/nettruyen/ban-gai-cua-toi-toan-la-truyen-thuyet/1/59.jpg",
+      },
+      {
+        page: 60,
+        src: "https://kcgsbok.com/nettruyen/ban-gai-cua-toi-toan-la-truyen-thuyet/1/60.jpg",
+        backup_url:
+          "https://nchcccl.pro/nettruyen/ban-gai-cua-toi-toan-la-truyen-thuyet/1/60.jpg",
+      },
+      {
+        page: 61,
+        src: "https://kcgsbok.com/nettruyen/ban-gai-cua-toi-toan-la-truyen-thuyet/1/61.jpg",
+        backup_url:
+          "https://naetmcxt.xyz/nettruyen/ban-gai-cua-toi-toan-la-truyen-thuyet/1/61.jpg",
+      },
+      {
+        page: 62,
+        src: "https://kcgsbok.com/nettruyen/ban-gai-cua-toi-toan-la-truyen-thuyet/1/62.jpg",
+        backup_url:
+          "https://nchcccl.pro/nettruyen/ban-gai-cua-toi-toan-la-truyen-thuyet/1/62.jpg",
+      },
+      {
+        page: 63,
+        src: "https://kcgsbok.com/nettruyen/ban-gai-cua-toi-toan-la-truyen-thuyet/1/63.jpg",
+        backup_url:
+          "https://naetmcxt.xyz/nettruyen/ban-gai-cua-toi-toan-la-truyen-thuyet/1/63.jpg",
+      },
+      {
+        page: 64,
+        src: "https://kcgsbok.com/nettruyen/ban-gai-cua-toi-toan-la-truyen-thuyet/1/64.jpg",
+        backup_url:
+          "https://nchcccl.pro/nettruyen/ban-gai-cua-toi-toan-la-truyen-thuyet/1/64.jpg",
+      },
+      {
+        page: 65,
+        src: "https://kcgsbok.com/nettruyen/ban-gai-cua-toi-toan-la-truyen-thuyet/1/65.jpg",
+        backup_url:
+          "https://naetmcxt.xyz/nettruyen/ban-gai-cua-toi-toan-la-truyen-thuyet/1/65.jpg",
+      },
+      {
+        page: 66,
+        src: "https://kcgsbok.com/nettruyen/ban-gai-cua-toi-toan-la-truyen-thuyet/1/66.jpg",
+        backup_url:
+          "https://nchcccl.pro/nettruyen/ban-gai-cua-toi-toan-la-truyen-thuyet/1/66.jpg",
+      },
+      {
+        page: 67,
+        src: "https://kcgsbok.com/nettruyen/ban-gai-cua-toi-toan-la-truyen-thuyet/1/67.jpg",
+        backup_url:
+          "https://naetmcxt.xyz/nettruyen/ban-gai-cua-toi-toan-la-truyen-thuyet/1/67.jpg",
+      },
+      {
+        page: 68,
+        src: "https://kcgsbok.com/nettruyen/ban-gai-cua-toi-toan-la-truyen-thuyet/1/68.jpg",
+        backup_url:
+          "https://nchcccl.pro/nettruyen/ban-gai-cua-toi-toan-la-truyen-thuyet/1/68.jpg",
+      },
+      {
+        page: 69,
+        src: "https://kcgsbok.com/nettruyen/ban-gai-cua-toi-toan-la-truyen-thuyet/1/69.jpg",
+        backup_url:
+          "https://naetmcxt.xyz/nettruyen/ban-gai-cua-toi-toan-la-truyen-thuyet/1/69.jpg",
+      },
+      {
+        page: 70,
+        src: "https://kcgsbok.com/nettruyen/ban-gai-cua-toi-toan-la-truyen-thuyet/1/70.jpg",
+        backup_url:
+          "https://nchcccl.pro/nettruyen/ban-gai-cua-toi-toan-la-truyen-thuyet/1/70.jpg",
+      },
+      {
+        page: 71,
+        src: "https://kcgsbok.com/nettruyen/ban-gai-cua-toi-toan-la-truyen-thuyet/1/71.jpg",
+        backup_url:
+          "https://naetmcxt.xyz/nettruyen/ban-gai-cua-toi-toan-la-truyen-thuyet/1/71.jpg",
+      },
+      {
+        page: 72,
+        src: "https://kcgsbok.com/nettruyen/ban-gai-cua-toi-toan-la-truyen-thuyet/1/72.jpg",
+        backup_url:
+          "https://nchcccl.pro/nettruyen/ban-gai-cua-toi-toan-la-truyen-thuyet/1/72.jpg",
+      },
+      {
+        page: 73,
+        src: "https://kcgsbok.com/nettruyen/ban-gai-cua-toi-toan-la-truyen-thuyet/1/73.jpg",
+        backup_url:
+          "https://naetmcxt.xyz/nettruyen/ban-gai-cua-toi-toan-la-truyen-thuyet/1/73.jpg",
+      },
+      {
+        page: 74,
+        src: "https://kcgsbok.com/nettruyen/ban-gai-cua-toi-toan-la-truyen-thuyet/1/74.jpg",
+        backup_url:
+          "https://nchcccl.pro/nettruyen/ban-gai-cua-toi-toan-la-truyen-thuyet/1/74.jpg",
+      },
+      {
+        page: 75,
+        src: "https://kcgsbok.com/nettruyen/ban-gai-cua-toi-toan-la-truyen-thuyet/1/75.jpg",
+        backup_url:
+          "https://naetmcxt.xyz/nettruyen/ban-gai-cua-toi-toan-la-truyen-thuyet/1/75.jpg",
+      },
+      {
+        page: 76,
+        src: "https://kcgsbok.com/nettruyen/ban-gai-cua-toi-toan-la-truyen-thuyet/1/76.jpg",
+        backup_url:
+          "https://nchcccl.pro/nettruyen/ban-gai-cua-toi-toan-la-truyen-thuyet/1/76.jpg",
+      },
+      {
+        page: 77,
+        src: "https://kcgsbok.com/nettruyen/ban-gai-cua-toi-toan-la-truyen-thuyet/1/77.jpg",
+        backup_url:
+          "https://naetmcxt.xyz/nettruyen/ban-gai-cua-toi-toan-la-truyen-thuyet/1/77.jpg",
+      },
+      {
+        page: 78,
+        src: "https://kcgsbok.com/nettruyen/ban-gai-cua-toi-toan-la-truyen-thuyet/1/78.jpg",
+        backup_url:
+          "https://nchcccl.pro/nettruyen/ban-gai-cua-toi-toan-la-truyen-thuyet/1/78.jpg",
+      },
+      {
+        page: 79,
+        src: "https://kcgsbok.com/nettruyen/ban-gai-cua-toi-toan-la-truyen-thuyet/1/79.jpg",
+        backup_url:
+          "https://naetmcxt.xyz/nettruyen/ban-gai-cua-toi-toan-la-truyen-thuyet/1/79.jpg",
+      },
+    ],
+    chapters: [
+      { id: 84, name: "Chapter 84" },
+      { id: 83, name: "Chapter 83" },
+      { id: 82, name: "Chapter 82" },
+      { id: 81, name: "Chapter 81" },
+      { id: 80, name: "Chapter 80" },
+      { id: 79, name: "Chapter 79" },
+      { id: 78, name: "Chapter 78" },
+      { id: 77, name: "Chapter 77" },
+      { id: 76, name: "Chapter 76" },
+      { id: 75, name: "Chapter 75" },
+      { id: 74, name: "Chapter 74" },
+      { id: 73, name: "Chapter 73" },
+      { id: 72, name: "Chapter 72" },
+      { id: 71, name: "Chapter 71" },
+      { id: 70, name: "Chapter 70" },
+      { id: 69, name: "Chapter 69" },
+      { id: 68, name: "Chapter 68" },
+      { id: 67, name: "Chapter 67" },
+      { id: 66, name: "Chapter 66" },
+      { id: 65, name: "Chapter 65" },
+      { id: 64, name: "Chapter 64" },
+      { id: 63, name: "Chapter 63" },
+      { id: 62, name: "Chapter 62" },
+      { id: 61, name: "Chapter 61" },
+      { id: 60, name: "Chapter 60" },
+      { id: 59, name: "Chapter 59" },
+      { id: 58, name: "Chapter 58" },
+      { id: 57, name: "Chapter 57" },
+      { id: 56, name: "Chapter 56" },
+      { id: 55, name: "Chapter 55" },
+      { id: 54, name: "Chapter 54" },
+      { id: 53, name: "Chapter 53" },
+      { id: 52, name: "Chapter 52" },
+      { id: 51, name: "Chapter 51" },
+      { id: 50, name: "Chapter 50" },
+      { id: 49, name: "Chapter 49" },
+      { id: 48, name: "Chapter 48" },
+      { id: 47, name: "Chapter 47" },
+      { id: 46, name: "Chapter 46" },
+      { id: 45, name: "Chapter 45" },
+      { id: 44, name: "Chapter 44" },
+      { id: 43, name: "Chapter 43" },
+      { id: 42, name: "Chapter 42" },
+      { id: 41, name: "Chapter 41" },
+      { id: 40, name: "Chapter 40" },
+      { id: 39, name: "Chapter 39" },
+      { id: 38, name: "Chapter 38" },
+      { id: 37, name: "Chapter 37" },
+      { id: 36, name: "Chapter 36" },
+      { id: 35, name: "Chapter 35" },
+      { id: 34, name: "Chapter 34" },
+      { id: 33, name: "Chapter 33" },
+      { id: 32, name: "Chapter 32" },
+      { id: 31, name: "Chapter 31" },
+      { id: 30, name: "Chapter 30" },
+      { id: 29, name: "Chapter 29" },
+      { id: 28, name: "Chapter 28" },
+      { id: 27, name: "Chapter 27" },
+      { id: 26, name: "Chapter 26" },
+      { id: 25, name: "Chapter 25" },
+      { id: 24, name: "Chapter 24" },
+      { id: 23, name: "Chapter 23" },
+      { id: 22, name: "Chapter 22" },
+      { id: 21, name: "Chapter 21" },
+      { id: 20, name: "Chapter 20" },
+      { id: 19, name: "Chapter 19" },
+      { id: 18, name: "Chapter 18" },
+      { id: 17, name: "Chapter 17" },
+      { id: 16, name: "Chapter 16" },
+      { id: 15, name: "Chapter 15" },
+      { id: 14, name: "Chapter 14" },
+      { id: 13, name: "Chapter 13" },
+      { id: 12, name: "Chapter 12" },
+      { id: 11, name: "Chapter 11" },
+      { id: 10, name: "Chapter 10" },
+      { id: 9, name: "Chapter 9" },
+      { id: 8, name: "Chapter 8" },
+      { id: 7, name: "Chapter 7" },
+      { id: 6, name: "Chapter 6" },
+      { id: 5, name: "Chapter 5" },
+      { id: 4, name: "Chapter 4" },
+      { id: 3, name: "Chapter 3" },
+      { id: 2, name: "Chapter 2" },
+      { id: 1, name: "Chapter 1" },
+    ],
+    chapter_name: "  Chapter 1   ",
+    comic_name: "   Bạn Gái Của Tôi Toàn Là Truyền Thuyết    ",
+  },
+  fallbackImage:
+    "https://sitechecker.pro/wp-content/uploads/2023/06/404-status-code.png",
+  fallbackSlider: {
+    comics: [
+      {
+        thumbnail:
+          "https://storage-ct.lrclib.net/file/cuutruyen/uploads/manga/582/panorama/processed_mobile-2401b4af4d8b2cfd7b9aaedece73c3ab.jpg",
+        title: "Mairimashita! Iruma-kun",
+        short_description:
+          "Mairimashita! Iruma-kun là câu chuyện kể về cậu bé Suzuki Iruma, người đã bị bố mẹ mình kí khế ước bán cho ác ma để đổi lấy tiền tài và bình an. Cậu bé Iruma đáng thương từ lúc mới biết đi (1 tuổi) đã phải 'ra xã hội' lăn lộn, buôn ba khắp nơi với hai vị phụ huynh 'tưng tửng' cho đến ngày một Ác Ma đến rước cậu đến Ma giới theo khế ước. Tưởng chừng như sắp vào bụng quỷ thì vị Ác Ma già nua này đã khóc lóc yêu cầu cậu làm cháu trai ông ta, với bản tính lương thiện và tốt bụng đến cả bản thân mình cũng phải kinh ngạc, cậu bất đắc dĩ đã đồng ý lời đề nghị đó và nhập học trường Ác Ma theo ý ông ta. Chuyện gì sẽ xảy ra tiếp theo, mời các bạn theo dõi cuộc sống học đường đầy bất thường của Iruma-kun.",
+      },
+      {
+        thumbnail:
+          "https://storage-ct.lrclib.net/file/cuutruyen/uploads/manga/182/panorama/processed_mobile-92ebe9fe08849f4972d22961740ca9cf.jpg",
+        title: "Otome Game Sekai wa Mob ni Kibishii Sekai Desu",
+        short_description:
+          "Leon - thanh niên chuyển sinh vào thế giới game otome, tuy là mob nhưng gọi main là đbrr =))",
+      },
+      {
+        thumbnail:
+          "https://storage-ct.lrclib.net/file/cuutruyen/uploads/manga/2049/panorama/processed_mobile-38e5557b1fa53278baea84bf960b94bb.jpg",
+        title:
+          "Harem Ou no Isekai Press Manyuuki ～Saikyou Musou no Ojisan wa Arayuru Shuzoku wo Yome ni suru～",
+        short_description:
+          "Người đàn ông chết trong cô đơn mong muốn nữ thần Nike cho mình tái sinh thành 'Máy dập ông chú phiên bản nhanh nhẹn' và tự xưng mình là 'Genji'. Nike bị sếp biến thành gà con với sứ mệnh là người trông chừng, và cô bất đắc dĩ đã phải đồng hành cùng Genji. Genji được tái sinh đã tỏ tình với lễ tân của Hội là Cindy, nhưng cậu đã bị từ chối vì cô chỉ thích người đàn ông mạnh mẽ. Chính vì thế, để được dập Cindy mà Genji đã nhận thảo phạt Hắc Long siêu mạnh đang được đồn đại trong Hội. Một bộ truyện hài giả tưởng khiêu dâm kể về một ông chú tốt bụng ra tay giúp đỡ kẻ yếu, làm nhụt chí kẻ mạnh và bảo vệ những người phụ nữ anh yêu khai màn!",
+      },
+      {
+        thumbnail:
+          "https://storage-ct.lrclib.net/file/cuutruyen/uploads/manga/989/panorama/processed_mobile-d51351c7cda6e66c3c2da51e7b63bf0b.jpg",
+        title: "Oneshot nhưng lại là series",
+        short_description:
+          "Tổng hợp các oneshot ngắn (hoặc dài, được chia thành nhiều phần) từ Twitter hay Pixiv được tôi dịch.",
+      },
+      {
+        thumbnail:
+          "https://storage-ct.lrclib.net/file/cuutruyen/uploads/manga/1898/panorama/processed_mobile-592c4d0ba29e77f10ceaf471c61a0381.jpg",
+        title:
+          "Tsuihousareru Tabi ni Skill wo Te ni Ireta Ore ga, 100 no Isekai de 2-shuume Musou",
+        short_description:
+          "Ed, một lính đánh thuê bình thường, đột nhiên được triệu hồi tới một nơi kì lạ và thực hiện thử thách 'Bị trục xuất khỏi 100 tổ đội anh hùng ở 100 thế giới khác nhau'. Cậu đã hoàn thành thử thách nhưng vẫn phải nhận thêm một nhiệm vụ 'Hãy nhìn vào kết cục của một trong những thế giới mà cậu đã đi qua' và cậu đã bị sốc khi quay lại đó.",
+      },
+      {
+        thumbnail:
+          "https://storage-ct.lrclib.net/file/cuutruyen/uploads/manga/2242/panorama/processed_mobile-911ab2b390e8ead053341df7dd32ada8.jpg",
+        title: "Kaoru Hana wa Rin to Saku",
+        short_description:
+          "Ở một nơi nào đó, có 2 trường cao trung lân cận. Cao trung Chidori, một trường nam sinh cấp thấp hội tụ đủ những thằng đần, trường nữ sinh Kikyo, một trường nữ sinh danh giá . Rintaro Tsugumi, một nam sinh năm 2 to khỏe và trầm tính tại trường Chidori, bắt gặp Kaoruko Waguri, một khách hàng khi cậu đang giúp việc tại cửa hàng bánh nhà mình . Rintaro cảm thấy thoải mái khi dành thời gian bên Kaoruko, nhưng cô lại là học sinh của trường Kikyo, ngôi trường hàng xóm cực kì căm ghét trường Chidori. Đây là câu chuyện về 2 con người ở rất gần nhưng lại rất xa.",
+      },
+    ],
+  },
 };
 
 export default CONSTANTS;
