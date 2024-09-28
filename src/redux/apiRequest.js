@@ -139,13 +139,14 @@ import {
 } from "./favouriteSlice";
 
 const REACT_APP_BASE_URL = process.env.REACT_APP_BASE_URL;
+const REACT_APP_MANGA_URL = process.env.REACT_APP_MANGA_URL;
 
 // Start genre
 
 export const getAllGenres = async (dispatch) => {
   dispatch(getAllGenresStart());
   try {
-    const res = await axios.get(`/genres`, {
+    const res = await axios.get(`${REACT_APP_MANGA_URL}/genres`, {
       headers: {
         "Content-Type": "application/json",
       },
@@ -167,7 +168,7 @@ export const getAllMangasBySpecficGenre = async (
   dispatch(getMangaByGenreStart());
   try {
     const res = await axios.get(
-      `/genres/${genreID}?page=${page}&status=${status}`,
+      `${REACT_APP_MANGA_URL}/genres/${genreID}?page=${page}&status=${status}`,
       {
         headers: {
           "Content-Type": "application/json",
@@ -185,11 +186,14 @@ export const getAllMangasBySpecficGenre = async (
 export const getAllMangasByGenre = async (page, status = "", dispatch) => {
   dispatch(getMangaByGenreStart());
   try {
-    const res = await axios.get(`/genres/all?page=${page}&status=${status}`, {
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
+    const res = await axios.get(
+      `${REACT_APP_MANGA_URL}/genres/all?page=${page}&status=${status}`,
+      {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
     dispatch(getMangaByGenreSuccess(res.data));
     return res.data;
   } catch (error) {
@@ -311,11 +315,14 @@ export const createHistory = async (
 export const searchSuggestMangas = async (keySearch, dispatch) => {
   dispatch(findMangasStart());
   try {
-    const res = await axios.get(`/search-suggest?q=${keySearch}`, {
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
+    const res = await axios.get(
+      `${REACT_APP_MANGA_URL}/search-suggest?q=${keySearch}`,
+      {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
     dispatch(findMangasSuccess(res.data));
     return res.data;
   } catch (error) {
@@ -327,11 +334,14 @@ export const searchSuggestMangas = async (keySearch, dispatch) => {
 export const searchMangas = async (keySearch, page, dispatch) => {
   dispatch(findMangasStart());
   try {
-    const res = await axios.get(`/search?q=${keySearch}&page=${page}`, {
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
+    const res = await axios.get(
+      `${REACT_APP_MANGA_URL}/search?q=${keySearch}&page=${page}`,
+      {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
     dispatch(findMangasSuccess(res.data));
     return res.data;
   } catch (error) {
@@ -343,7 +353,7 @@ export const searchMangas = async (keySearch, page, dispatch) => {
 export const getManga = async (ID, dispatch) => {
   dispatch(getMangaStart());
   try {
-    const res = await axios.get(`/comics/${ID}`, {
+    const res = await axios.get(`${REACT_APP_MANGA_URL}/comics/${ID}`, {
       headers: {
         "Content-Type": "application/json",
       },
@@ -359,11 +369,14 @@ export const getManga = async (ID, dispatch) => {
 export const getAllMangas = async (type = "", page, status, dispatch) => {
   dispatch(getAllMangasStart());
   try {
-    const res = await axios.get(`/top${type}?page=${page}&status=${status}`, {
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
+    const res = await axios.get(
+      `${REACT_APP_MANGA_URL}/top${type}?page=${page}&status=${status}`,
+      {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
     dispatch(getAllMangasSuccess(res.data));
     return res.data;
   } catch (error) {
@@ -375,11 +388,14 @@ export const getAllMangas = async (type = "", page, status, dispatch) => {
 export const getAllTrendingMangas = async (page, status = "", dispatch) => {
   dispatch(getAllTrendingMangasStart());
   try {
-    const res = await axios.get(`trending-comics?page=${page}`, {
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
+    const res = await axios.get(
+      `${REACT_APP_MANGA_URL}trending-comics?page=${page}`,
+      {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
     dispatch(getAllTrendingMangasSuccess(res.data));
     return res.data;
   } catch (error) {
@@ -391,11 +407,14 @@ export const getAllTrendingMangas = async (page, status = "", dispatch) => {
 export const getAllNewMangas = async (page, status = "", dispatch) => {
   dispatch(getAllNewMangasStart());
   try {
-    const res = await axios.get(`/new-comics?page=${page}&status=${status}`, {
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
+    const res = await axios.get(
+      `${REACT_APP_MANGA_URL}/new-comics?page=${page}&status=${status}`,
+      {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
     dispatch(getAllNewMangasSuccess(res.data));
     return res.data;
   } catch (error) {
@@ -408,7 +427,7 @@ export const getAllRecentlyMangas = async (page, status = "", dispatch) => {
   dispatch(getAllRecentlyMangasStart());
   try {
     const res = await axios.get(
-      `/recent-update-comics?page=${page}&status=${status}`,
+      `${REACT_APP_MANGA_URL}/recent-update-comics?page=${page}&status=${status}`,
       {
         headers: {
           "Content-Type": "application/json",
@@ -430,11 +449,14 @@ export const getAllRecentlyMangas = async (page, status = "", dispatch) => {
 export const getChapter = async (comicID, chapterID, dispatch) => {
   dispatch(getChapterStart());
   try {
-    const res = await axios.get(`/comics/${comicID}/chapters/${chapterID}`, {
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
+    const res = await axios.get(
+      `${REACT_APP_MANGA_URL}/comics/${comicID}/chapters/${chapterID}`,
+      {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
     dispatch(getChapterSuccess(res.data));
     return res.data;
   } catch (error) {
