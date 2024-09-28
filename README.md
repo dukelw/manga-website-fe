@@ -1,7 +1,7 @@
-# Manga Website
+![search-result](https://github.com/user-attachments/assets/86734252-dd45-45ff-aadd-a666961dc406)# Manga Website
 
-![By Lewis](https://www.facebook.com/daydreamer.so/) 
-![Demo](lewis-manga.vercel.app) 
+- By Lewis
+- Demo: lewis-manga.vercel.app
 
 ## Project Description
 
@@ -36,26 +36,49 @@ Manga Website is a web application that allows users to search, read, and track 
 
 - **PC**:
 
-![Homepage](https://drive.google.com/file/d/1SapJYpREkxLohqGzRPZmwUMWq35ZyFtu/view?usp=sharing)
-![Search](https://drive.google.com/file/d/1HIQR0CZZvZMpL9Bi39t2a4NvVBKh-X1R/view?usp=sharing)
-![Manga](https://drive.google.com/file/d/1rj5auKIm31l_9G8_CdmapFDsnQPDMV60/view?usp=sharing)
-![Chapter](https://drive.google.com/file/d/18L6COvlcpMp2K86M_F1AJ4qs5nlv_a0_/view?usp=sharing)
-![Comment](https://drive.google.com/file/d/1q6Pcjf5Fakqqa6WDqYbbq-Tt6fHNKdup/view?usp=sharing)
-![Genres](https://drive.google.com/file/d/1N58hsMq138btDYGwBGkKXqC7bGK0b8WI/view?usp=sharing)
-![History](https://drive.google.com/file/d/1SapJYpREkxLohqGzRPZmwUMWq35ZyFtu/view?usp=sharing)
-![Favourite](https://drive.google.com/file/d/1t-vceJ2g91jkvj6o8n2FPn9tLhlw-uk-/view?usp=sharing)
-![Signin](https://drive.google.com/file/d/1kQEH_EE_e1UPHsgCEMw_2vzkp5V8LKmM/view?usp=sharing)
-![Signup](https://drive.google.com/file/d/1sAOHPaPsO6Fcf8cY5tho2nel1uN3wDKy/view?usp=sharing)
+  - Homepage
+    ![main-and-header](https://github.com/user-attachments/assets/464220a2-41f2-4803-a557-936971a3c4d4)
+
+  - Search
+    ![search](https://github.com/user-attachments/assets/c329c70b-eae9-4460-8a5b-653527a9205b)
+    ![search-result](https://github.com/user-attachments/assets/742ddef5-213f-4226-b49f-a8b6e14f7a8c)
+
+  - Manga
+    ![manga](https://github.com/user-attachments/assets/c579b525-76d9-4b35-9635-bbbd7708d050)
+
+  - Chapter
+    ![chapter-overview-1](https://github.com/user-attachments/assets/21ae078b-bac4-4da2-ab91-51efe7aa64cd)
+
+  - Comment
+    ![chapter-overview-3](https://github.com/user-attachments/assets/4f2ff49f-cdba-4b0b-847f-1bf37fda2a62)
+    
+  - Genres
+    ![genres](https://github.com/user-attachments/assets/e6278879-e942-4fdb-b7f0-10bc4b1c535b)
+    
+  - History
+    ![history](https://github.com/user-attachments/assets/eb1ece37-ae4a-4416-a0bf-4277eadefa21)
+
+  - Favourite
+    ![favourite](https://github.com/user-attachments/assets/89ca1e30-1f84-45fa-b643-1b553680b162)
+
+  - Signin
+    ![sign in](https://github.com/user-attachments/assets/8a0b14a7-ebf5-47fe-9cec-5d205558115d)
+
+  - Signup
+    ![sign up](https://github.com/user-attachments/assets/e1aa32f2-591a-45aa-819b-84ee1a664f8d)
 
 - **Mobile**:
 
-![History](https://drive.google.com/file/d/1GAWHwT7FIV1_RsZ0e8lFd46cvwIRIvwI/view?usp=sharing)
-![Manga](https://drive.google.com/file/d/1NKwwXHJk1yxPKEXf395RAquptUJbeVof/view?usp=sharing)
+  - History
+    ![history-mobile](https://github.com/user-attachments/assets/37651604-3a3c-4923-82dd-15351f79b2a8)
+    
+  - Manga
+    ![manga-mobile](https://github.com/user-attachments/assets/9e96396f-7ec5-421c-a930-5bbcbbeb5f15)
 
 
 ## Note
 
-- This is just some pages in the website, go to ![the website](https://www.facebook.com/daydreamer.so/) to have the best experience.
+- This is just some pages in the website, go to the website to have the best experience.
 - Some time API is unavailable, when you see the page without any mangas or when you click to a manga but seeing another one.
 - Thank you for reading.
 
