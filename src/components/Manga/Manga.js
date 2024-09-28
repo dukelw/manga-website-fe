@@ -56,7 +56,8 @@ function Manga() {
     }
   }, [slug]);
 
-  const currentManga = useSelector((state) => state.manga.get.manga);
+  const currentManga =
+    useSelector((state) => state.manga.get.manga) ?? fallbackMangaInfo;
   console.log(currentManga);
   const theme = createTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
@@ -192,10 +193,7 @@ function Manga() {
         >
           <CardMedia
             component="img"
-            image={
-              thumbnail ||
-              fallbackImage
-            }
+            image={thumbnail || fallbackImage}
             alt={title}
             sx={{
               borderRadius: 2,

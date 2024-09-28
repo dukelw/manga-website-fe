@@ -146,7 +146,7 @@ const REACT_APP_MANGA_URL = process.env.REACT_APP_MANGA_URL;
 export const getAllGenres = async (dispatch) => {
   dispatch(getAllGenresStart());
   try {
-    const res = await axios.get(`${REACT_APP_MANGA_URL}/genres`, {
+    const res = await axios.get(`${REACT_APP_MANGA_URL}genres`, {
       headers: {
         "Content-Type": "application/json",
       },
@@ -168,7 +168,7 @@ export const getAllMangasBySpecficGenre = async (
   dispatch(getMangaByGenreStart());
   try {
     const res = await axios.get(
-      `${REACT_APP_MANGA_URL}/genres/${genreID}?page=${page}&status=${status}`,
+      `${REACT_APP_MANGA_URL}genres/${genreID}?page=${page}&status=${status}`,
       {
         headers: {
           "Content-Type": "application/json",
@@ -187,7 +187,7 @@ export const getAllMangasByGenre = async (page, status = "", dispatch) => {
   dispatch(getMangaByGenreStart());
   try {
     const res = await axios.get(
-      `${REACT_APP_MANGA_URL}/genres/all?page=${page}&status=${status}`,
+      `${REACT_APP_MANGA_URL}genres/all?page=${page}&status=${status}`,
       {
         headers: {
           "Content-Type": "application/json",
@@ -316,7 +316,7 @@ export const searchSuggestMangas = async (keySearch, dispatch) => {
   dispatch(findMangasStart());
   try {
     const res = await axios.get(
-      `${REACT_APP_MANGA_URL}/search-suggest?q=${keySearch}`,
+      `${REACT_APP_MANGA_URL}search-suggest?q=${keySearch}`,
       {
         headers: {
           "Content-Type": "application/json",
@@ -335,7 +335,7 @@ export const searchMangas = async (keySearch, page, dispatch) => {
   dispatch(findMangasStart());
   try {
     const res = await axios.get(
-      `${REACT_APP_MANGA_URL}/search?q=${keySearch}&page=${page}`,
+      `${REACT_APP_MANGA_URL}search?q=${keySearch}&page=${page}`,
       {
         headers: {
           "Content-Type": "application/json",
@@ -353,7 +353,7 @@ export const searchMangas = async (keySearch, page, dispatch) => {
 export const getManga = async (ID, dispatch) => {
   dispatch(getMangaStart());
   try {
-    const res = await axios.get(`${REACT_APP_MANGA_URL}/comics/${ID}`, {
+    const res = await axios.get(`${REACT_APP_MANGA_URL}comics/${ID}`, {
       headers: {
         "Content-Type": "application/json",
       },
@@ -370,7 +370,7 @@ export const getAllMangas = async (type = "", page, status, dispatch) => {
   dispatch(getAllMangasStart());
   try {
     const res = await axios.get(
-      `${REACT_APP_MANGA_URL}/top${type}?page=${page}&status=${status}`,
+      `${REACT_APP_MANGA_URL}top${type}?page=${page}&status=${status}`,
       {
         headers: {
           "Content-Type": "application/json",
@@ -408,7 +408,7 @@ export const getAllNewMangas = async (page, status = "", dispatch) => {
   dispatch(getAllNewMangasStart());
   try {
     const res = await axios.get(
-      `${REACT_APP_MANGA_URL}/new-comics?page=${page}&status=${status}`,
+      `${REACT_APP_MANGA_URL}new-comics?page=${page}&status=${status}`,
       {
         headers: {
           "Content-Type": "application/json",
@@ -427,7 +427,7 @@ export const getAllRecentlyMangas = async (page, status = "", dispatch) => {
   dispatch(getAllRecentlyMangasStart());
   try {
     const res = await axios.get(
-      `${REACT_APP_MANGA_URL}/recent-update-comics?page=${page}&status=${status}`,
+      `${REACT_APP_MANGA_URL}recent-update-comics?page=${page}&status=${status}`,
       {
         headers: {
           "Content-Type": "application/json",
@@ -450,7 +450,7 @@ export const getChapter = async (comicID, chapterID, dispatch) => {
   dispatch(getChapterStart());
   try {
     const res = await axios.get(
-      `${REACT_APP_MANGA_URL}/comics/${comicID}/chapters/${chapterID}`,
+      `${REACT_APP_MANGA_URL}comics/${comicID}/chapters/${chapterID}`,
       {
         headers: {
           "Content-Type": "application/json",
