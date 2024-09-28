@@ -74,6 +74,7 @@ const History = () => {
         alignItems="center"
         height="100vh"
         marginTop={isMobile || isTablet ? 28 : 0}
+        sx={{ padding: isMobile || isTablet ? "20px" : "0 60px" }}
       >
         <Grid container spacing={2}>
           {/* Skeleton for Manga Card Thumbnails */}

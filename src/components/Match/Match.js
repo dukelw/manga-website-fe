@@ -11,6 +11,8 @@ import {
   Pagination,
   Button,
   Skeleton,
+  createTheme,
+  useMediaQuery,
 } from "@mui/material";
 import { MenuBook, Visibility } from "@mui/icons-material"; // Import icons
 import styles from "./Match.module.scss";
@@ -20,6 +22,7 @@ import {
   getManga,
   searchMangas,
 } from "../../redux/apiRequest";
+import CONSTANTS from "../../constants";
 
 const cx = classNames.bind(styles);
 
@@ -31,6 +34,11 @@ const Match = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [mangas, setMangas] = useState([]);
   const [totalPages, setTotalPages] = useState(0);
+  const { fallbackImage } = CONSTANTS;
+
+  const theme = createTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
+  const isTablet = useMediaQuery(theme.breakpoints.between("sm", "lg"));
 
   useEffect(() => {
     const fetchData = async () => {
@@ -61,11 +69,12 @@ const Match = () => {
         justifyContent="center"
         alignItems="center"
         height="100vh"
+        sx={{ padding: isMobile || isTablet ? "20px" : "0 60px" }}
       >
         <Grid container spacing={2}>
           {/* Skeleton for Manga Card Thumbnails */}
           {Array.from(new Array(8)).map((_, index) => (
-            <Grid item xs={12} sm={6} md={3} lg={1.5} key={index}>
+            <Grid item xs={6} sm={6} md={3} lg={1.5} key={index}>
               <Skeleton
                 variant="rectangular"
                 width="100%"
@@ -89,7 +98,11 @@ const Match = () => {
   }
 
   return (
-    <Box className={cx("home-container")} padding={6} position="relative">
+    <Box
+      className={cx("home-container")}
+      sx={{ padding: isMobile || isTablet ? "20px" : "60px" }}
+      position="relative"
+    >
       {/* Manga cards */}
       <Typography
         variant="h5"
@@ -101,12 +114,12 @@ const Match = () => {
           marginBottom: "12px",
         }}
       >
-        {"Manga Match With: " + keySearch}
+        {"Search result: " + keySearch}
       </Typography>
 
       <Grid container spacing={2}>
-        {mangas.map((manga) => (
-          <Grid item xs={12} sm={6} md={3} lg={1.714} key={manga.id}>
+        {mangas?.map((manga) => (
+          <Grid item xs={6} sm={6} md={3} lg={1.714} key={manga.id}>
             <Card
               onClick={async () => {
                 await getManga(manga.id, dispatch);
@@ -129,8 +142,7 @@ const Match = () => {
                 className={cx("card-media")}
                 onError={(e) => {
                   e.target.onerror = null;
-                  e.target.src =
-                    "https://itphutran.com/wp-content/uploads/2017/05/H%C6%B0%E1%BB%9Bng-d%E1%BA%ABn-x%E1%BB%AD-l%C3%BD-l%E1%BB%97i-404-Page-Not-Found-trong-Java-v%C3%A0-PHP.jpg";
+                  e.target.src = fallbackImage;
                 }}
               />
               <Box className={cx("overlay")}>
@@ -139,7 +151,9 @@ const Match = () => {
                   <Box className={cx("info-item")}>
                     <MenuBook sx={{ fontSize: "16px", marginRight: "4px" }} />
                     <Typography sx={{ fontSize: "14px" }}>
-                      {manga.last_chapters[0]?.name}
+                      {manga.last_chapters
+                        ? manga.last_chapters[0]?.name
+                        : manga.lastest_chapters[0]?.name}
                     </Typography>
                   </Box>
                   <Box className={cx("info-item")}>

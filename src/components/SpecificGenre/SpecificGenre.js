@@ -11,6 +11,8 @@ import {
   Pagination,
   Button,
   Skeleton,
+  createTheme,
+  useMediaQuery,
 } from "@mui/material";
 import { MenuBook, Visibility } from "@mui/icons-material"; // Import icons
 import styles from "./SpecificGenre.module.scss";
@@ -28,6 +30,9 @@ const SpecificGenre = () => {
   const [status, setStatus] = useState("all");
   const [mangas, setMangas] = useState([]);
   const [totalPages, setTotalPages] = useState(0);
+  const theme = createTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
+  const isTablet = useMediaQuery(theme.breakpoints.between("sm", "lg"));
 
   useEffect(() => {
     const fetchData = async () => {
@@ -68,11 +73,12 @@ const SpecificGenre = () => {
         justifyContent="center"
         alignItems="center"
         height="100vh"
+        sx={{ padding: isMobile || isTablet ? "20px" : "60px" }}
       >
         <Grid container spacing={2}>
           {/* Skeleton for Manga Card Thumbnails */}
           {Array.from(new Array(8)).map((_, index) => (
-            <Grid item xs={12} sm={6} md={3} lg={1.5} key={index}>
+            <Grid item xs={6} sm={6} md={3} lg={1.5} key={index}>
               <Skeleton
                 variant="rectangular"
                 width="100%"
@@ -183,7 +189,7 @@ const SpecificGenre = () => {
 
       <Grid container spacing={2}>
         {mangas.map((manga) => (
-          <Grid item xs={12} sm={6} md={3} lg={1.714} key={manga.id}>
+          <Grid item xs={6} sm={6} md={3} lg={1.714} key={manga.id}>
             <Card
               onClick={async () => {
                 await getManga(manga.id, dispatch);

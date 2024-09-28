@@ -66,7 +66,7 @@ function CustomSearch() {
     <div>
       <HeadlessTippy
         interactive
-        visible={showResult && searchResult.length > 0}
+        visible={showResult && searchResult?.length > 0}
         placement="bottom-end"
         render={(attrs) => (
           <div className={cx("search-result")} tabIndex={-1} {...attrs}>
@@ -127,7 +127,7 @@ function CustomSearch() {
                 )
               )}
               {/* Render the 'See More' button if there are more than 5 results and not showing all */}
-              {!showAllResults && searchResult.length > 5 && (
+              {!showAllResults && searchResult?.length > 5 && (
                 <Button
                   variant="contained"
                   size="small"

@@ -79,6 +79,7 @@ const MangaSectionAdvance = ({ sectionName, fetchMangaFunction }) => {
         alignItems="center"
         height="100vh"
         marginTop={isMobile || isTablet ? 44 : 0}
+        sx={{ padding: isMobile || isTablet ? "20px" : "60px" }}
       >
         <Grid container spacing={2}>
           {/* Skeleton for Manga Card Thumbnails */}
@@ -357,7 +358,7 @@ const MangaSectionAdvance = ({ sectionName, fetchMangaFunction }) => {
 
       <Grid container spacing={2}>
         {mangas.map((manga, index) => (
-          <Grid item xs={12} sm={6} md={3} lg={1.5} key={index}>
+          <Grid item xs={6} sm={6} md={3} lg={1.5} key={index}>
             <Card
               onClick={async () => {
                 await getManga(manga.id, dispatch);

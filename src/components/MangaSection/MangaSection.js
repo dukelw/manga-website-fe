@@ -66,7 +66,7 @@ const MangaSection = ({ sectionName, fetchMangaFunction }) => {
         alignItems="center"
         height="100vh"
         marginTop={isMobile || isTablet ? 28 : 0}
-      >
+        sx={{ padding: isMobile || isTablet ? "20px" : "60px" }}      >
         <Grid container spacing={2}>
           {/* Skeleton for Manga Card Thumbnails */}
           {Array.from(new Array(8)).map((_, index) => (

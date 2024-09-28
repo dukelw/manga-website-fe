@@ -416,8 +416,23 @@ function Header() {
               </List>
             </Box>
           </Drawer>
-          <Drawer anchor="top" open={searchOpen} onClose={toggleSearch(false)}>
-            <Box sx={{ padding: "12px 0", backgroundColor: "var(--black)" }}>
+          <Drawer
+            anchor="top"
+            open={searchOpen}
+            onClose={toggleSearch(false)}
+            sx={{
+              "& .MuiDrawer-paper": {
+                height: "50vh",
+              },
+            }}
+          >
+            <Box
+              sx={{
+                padding: "12px 0",
+                backgroundColor: "var(--black)",
+                height: "100%",
+              }}
+            >
               <Search />
             </Box>
           </Drawer>
